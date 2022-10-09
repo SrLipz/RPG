@@ -11,9 +11,14 @@ public class Main {
         Classe personagem2 = new GuerreiroMachado();
         Classe dragao = new Dragao();
 
-        System.out.println(personagem1.status());
-        System.out.println(personagem2.status());
-        System.out.println(dragao.status());
+        System.out.println();
+        personagem1.status();
+
+        System.out.println();
+        personagem2.status();
+        
+        System.out.println();
+        dragao.status();
         
     }
 }

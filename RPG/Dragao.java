@@ -19,8 +19,9 @@ public class Dragao extends Classe {
     }
 
     @Override
-    public String status(){
-        String texto = String.format("Classe: %s\nVida: %d\nAtaque Base: %d\nDefesa Base: %d\n", getClasse(),getVida(), getAtqBase(), getDefBase());
-            return texto;
+    public void status(){
+        System.out.printf("Classe: %s\nVida: %d\nAtaque Base: %d\nDefesa Base: %d\n", 
+                            getClasse(),getVida(), 
+                            getAtqBase(), getDefBase());
     }
 }

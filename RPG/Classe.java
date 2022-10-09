@@ -1,13 +1,14 @@
 public class Classe {
     
+    private String nome;
     private String classe;
+    private int vida;
     private int atqBase;
     private int defBase;
-    private int vida;
-    private String nomeArma;
-    private int atqArma;
-    private int defArma;
 
+    public String getNome() {
+        return nome;
+    }
 
     public String getClasse() {
         return classe;
@@ -21,20 +22,26 @@ public class Classe {
     public int getVida() {
         return vida;
     }
-    public String getNomeArma(){
-        return nomeArma;
+
+    void atacar() {
+        System.out.print("Atacou");
     }
-    public int getAtqArma(){
-        return atqArma;
-    }
-    public int getDefArma(){
-        return defArma;
+    
+    void defender() {
+        System.out.print("defender");
     }
 
-    public String status(){
+    void usarArma() {
+        System.out.print("Usou arma x");
+    }
+
+    public void status(){
         //String texto = String.format("Classe: %s\nAtaque base: %d\nDefesa base: %d\nVida: %d", getClasse(), getAtqBase(), getDefBase(), getVida());
-        String texto = String.format("Classe: %s\nVida: %d\nArma: %s\nAtaque Base: %d(+%d)\nDefesa Base: %d(+%d)\n", getClasse(),getVida(), getNomeArma(), getAtqBase(), getAtqArma(), getDefBase(), getDefBase());
-            return texto;
+        System.out.printf("Classe: %s\nVida: %d\nAtaque Base: %d\nDefesa Base: %d\n", 
+                            getClasse(),
+                            getVida(), 
+                            getAtqBase(), 
+                            getDefBase());
     }
 }
 
