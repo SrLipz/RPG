@@ -1,24 +1,60 @@
-public class Classe {
+public class Personagem {
     
-    private String nome;
-    private String classe;
-    private int vida;
-    private int atqBase;
-    private int defBase;
+    protected String nome;
+    protected String classe;
+    protected int vida;
+    protected int atqBase;
+    protected int defBase;
+
+
+
+    public Personagem(String classe, int vida, int atqBase, int defBase) {
+        this.classe = classe;
+        this.vida = vida;
+        this.atqBase = atqBase;
+        this.defBase = defBase;
+    }
+
+    public Personagem() {
+
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setClasse(String classe) {
+        this.classe = classe;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public void setAtqBase(int atqBase) {
+        this.atqBase = atqBase;
+    }
+
+    public void setDefBase(int defBase) {
+        this.defBase = defBase;
+    }
 
     public String getNome() {
         return nome;
     }
-
+    
     public String getClasse() {
         return classe;
     }
+
     public int getAtqBase() {
         return atqBase;
     }
+
     public int getDefBase() {
         return defBase;
     }
+
     public int getVida() {
         return vida;
     }

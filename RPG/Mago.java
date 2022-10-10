@@ -1,21 +1,17 @@
-public class Mago extends Classe {
+public class Mago extends Personagem {
 
-    private String classe = "Mago";
-    private int atqBase = 20;
-    private int defBase = 10;
-    private int vida = 200;
+    public Mago () {
+        super("Mago", 200, 20, 10);
+    }
 
-    public String getClasse() {
-        return classe;
+    public void varinha () {
+        this.setAtqBase(this.getAtqBase()+16);
+        this.setDefBase(this.getDefBase()+9);
     }
-    public int getAtqBase() {
-        return atqBase;
+
+    public void cajado () {
+        this.setAtqBase(this.getAtqBase()+13);
+        this.setDefBase(this.getDefBase()+12);
     }
-    public int getDefBase() {
-        return defBase;
-    }
-    public int getVida() {
-        return vida;
-    }
-    
+
 }

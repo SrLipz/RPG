@@ -1,21 +1,16 @@
-public class Arqueiro extends Classe {
+public class Arqueiro extends Personagem {
 
-    private String classe = "Arqueiro";
-    private int atqBase = 20;
-    private int defBase = 30;
-    private int vida = 160;
+    public Arqueiro () {
+        super("Arqueiro", 160, 20, 30);
+    }
 
-    public String getClasse() {
-        return classe;
+    public void arcoLongo () {
+        this.setAtqBase(this.getAtqBase()+12);
+        this.setDefBase(this.getDefBase()+13);
     }
-    public int getAtqBase() {
-        return atqBase;
+
+    public void balestra () {
+        this.setAtqBase(this.getAtqBase()+15);
+        this.setDefBase(this.getDefBase()+10);
     }
-    public int getDefBase() {
-        return defBase;
-    }
-    public int getVida() {
-        return vida;
-    }
-    
 }
