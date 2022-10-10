@@ -6,8 +6,6 @@ public class Personagem {
     protected int atqBase;
     protected int defBase;
 
-
-
     public Personagem(String classe, int vida, int atqBase, int defBase) {
         this.classe = classe;
         this.vida = vida;
