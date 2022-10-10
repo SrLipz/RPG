@@ -1,10 +1,10 @@
 public class Personagem {
     
-    protected String nome;
-    protected String classe;
-    protected int vida;
-    protected int atqBase;
-    protected int defBase;
+    private String nome;
+    private String classe;
+    private int vida;
+    private int atqBase;
+    private int defBase;
 
     public Personagem(String classe, int vida, int atqBase, int defBase) {
         this.classe = classe;
