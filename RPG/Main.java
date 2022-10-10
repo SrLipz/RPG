@@ -7,10 +7,10 @@ public class Main {
         System.out.println("1 - Iniciar uma nova partida \n2 - Sair do jogo");
         
         Scanner leitor = new Scanner(System.in);
-        int menu1 = leitor.nextInt();
+        int menu = leitor.nextInt();
         System.out.println();
         
-        switch(menu1) {
+        switch(menu) {
 
             case 1: System.out.println("Certo, vamos em frente! O que deseja fazer?\n"); break;
             case 2: System.out.println("O jogo foi encerrado!"); System.exit(0);
@@ -26,7 +26,31 @@ public class Main {
 
             case 1: 
             System.out.println("Qual o tipo de personagem que deseja criar?\n");
-            System.out.println("1 - Arqueiro \n2 - Guerreiro \n3 - Mago\n");
+            System.out.println("1 - Arqueiro \n2 - Guerreiro \n3 - Mago");
+            int menuPersonagem = leitor.nextInt();
+            System.out.println();
+
+            System.out.println("Selecione a arma:\n");
+
+            switch(menuPersonagem) {
+                
+                case 1:
+                System.out.println("1 - Arco Longo \n2 - Balestra"); 
+                int menuArma1 = leitor.nextInt();
+                break;
+                
+                case 2:
+                System.out.println("1 - Espada \n2 - Machado");
+                int menuArma2 = leitor.nextInt();
+                break;
+                
+                case 3:
+                System.out.println("1 - Varinha \n2 - Cajado");
+                int menuArma3 = leitor.nextInt();
+                break;
+                
+                default: System.out.println("Opção inválida! Digite uma opção correta!");
+            }
             break;
             
             case 2: 
