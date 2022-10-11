@@ -3,20 +3,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Olá, seja bem vindo ao Heroes of OOP! \n\nVamos começar uma nova partida?\n");
-        System.out.println("1 - Iniciar uma nova partida \n2 - Sair do jogo");
-        
-        Scanner leitor = new Scanner(System.in);
-        int menu = leitor.nextInt();
-        System.out.println();
-        
-        switch(menu) {
+        Tela tela = new Tela();
 
-            case 1: System.out.println("Certo, vamos em frente! O que deseja fazer?\n"); break;
-            case 2: System.out.println("O jogo foi encerrado!"); System.exit(0);
-            default: System.out.println("Opção inválida! Digite uma opção correta!");
-
-        }
+        tela.menuInicio();
 
         System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo");
         int menu2 = leitor.nextInt();
