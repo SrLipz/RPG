@@ -1,13 +1,12 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
 
         Tela tela = new Tela();
 
         tela.menuInicio();
+        tela.inicioPartida();
 
-        System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo");
+        /*/ System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo");
         int menu2 = leitor.nextInt();
         System.out.println();
         
@@ -51,5 +50,6 @@ public class Main {
             default: System.out.println("Opção inválida! Digite uma opção correta!");
 
         }
+        /* */
     }
 }
