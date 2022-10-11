@@ -1,4 +1,4 @@
-public class GuerreiroMachado extends Guerreiro {
+public class Machado extends Guerreiro {
     
     private int atqBaseArma = 17;
     private int defBaseArma = 8;

@@ -1,13 +1,18 @@
-public class GuerreiroEspada extends Guerreiro {
+public class Espada extends Guerreiro {
     
+    private String arma = "Espada";
     private int atqBaseArma = 10;
     private int defBaseArma = 15;
+
+    public String getArma() {
+        return arma;
+    }
     
-    private int getAtqBaseArma() {
+    public int getAtqBaseArma() {
         return atqBaseArma;
     }
 
-    private int getDefBaseArma() {
+    public int getDefBaseArma() {
         return defBaseArma;
     }
 
@@ -15,7 +20,7 @@ public class GuerreiroEspada extends Guerreiro {
     public void atacar (){
         int atqComArma;
         atqComArma = getAtqBase() + getAtqBaseArma();
-        System.out.printf("Guerreiro atacou com uma força %d.%n", atqComArma);
+        System.out.printf("%s usou a arma %s, com uma força total %d.%n", getClasse(), getArma(), atqComArma);
     }
     
     @Override

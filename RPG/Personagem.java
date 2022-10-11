@@ -13,6 +13,10 @@ public class Personagem {
         this.defBase = defBase;
     }
 
+    public Personagem() {
+        
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -57,11 +61,7 @@ public class Personagem {
     
     public void defender() {}
 
-    void usarArma() {
-        System.out.print("Usou arma x");
-    }
-
-    public void status(){
+    public void status (){
         //String texto = String.format("Classe: %s\nAtaque base: %d\nDefesa base: %d\nVida: %d", getClasse(), getAtqBase(), getDefBase(), getVida());
         System.out.printf("Classe: %s\nVida: %d\nAtaque Base: %d\nDefesa Base: %d\n", 
                             getClasse(),
