@@ -1,10 +1,19 @@
 public class Main {
     public static void main(String[] args) {
 
-        Tela tela = new Tela();
+        Guerreiro p = new GuerreiroEspada();
 
-        tela.menuInicio();
-        tela.inicioPartida();
+        p.atacar();
+        p.defender();
+        System.out.println(p.getAtqBase());
+        System.out.println(p.getClasse());
+        p.status();
+
+
+        //Tela tela = new Tela();
+
+        //tela.menuInicio();
+        //tela.inicioPartida();
 
         /*/ System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo");
         int menu2 = leitor.nextInt();
