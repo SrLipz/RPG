@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Tela {
 
     
-
     Scanner scanner = new Scanner(System.in);
     
     public void menuInicio () {

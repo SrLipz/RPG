@@ -14,7 +14,7 @@ public class Personagem {
     }
 
     public Personagem() {
-        
+
     }
 
     public void setNome(String nome) {

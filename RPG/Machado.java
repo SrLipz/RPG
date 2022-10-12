@@ -1,8 +1,13 @@
 public class Machado extends Guerreiro {
     
+    private String arma = "Machado";
     private int atqBaseArma = 17;
     private int defBaseArma = 8;
     
+    public String getArma() {
+        return arma;
+    }
+
     private int getAtqBaseArma() {
         return atqBaseArma;
     }
