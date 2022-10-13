@@ -27,7 +27,6 @@ public class Tela {
                 break;
                 
                 default: System.out.println("Opção inválida! Digite uma opção correta.\n");
-
             }
         }
     }
@@ -37,25 +36,33 @@ public class Tela {
         Personagem[] personagens = new Personagem[3];
 
         System.out.println("O que deseja fazer?\n");
-        
-        for (boolean i = true; i == true;) {
+
+        boolean k = false; // para verificar se um personagem pelo menos já foi criado
+
+        for (int i = 0; i < 3 ;i++) {
+
+            System.out.println(i);
 
             System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo\n");
             int menu2 = scanner.nextInt();
             System.out.println();
 
-            switch(menu2) {
+            if (menu2 == 1){ 
+                k = true; // para verificar se um personagem foi criado
+            }
 
+            switch(menu2) {
                 case 1: 
+
                 System.out.println("Qual o tipo de personagem que deseja criar?\n");
                 System.out.println("1 - Arqueiro \n2 - Guerreiro \n3 - Mago\n");
                 int menuPersonagem = scanner.nextInt();
                 System.out.println();
-        
+            
                 System.out.println("Selecione a arma:\n");
-        
+            
                 switch(menuPersonagem) {
-                    
+                        
                     case 1:
 
                     for (boolean j = true; j == true;) {
@@ -72,7 +79,7 @@ public class Tela {
                     }
 
                     break;
-                    
+                        
                     case 2:
 
                     for (boolean j = true; j == true;) {
@@ -89,11 +96,11 @@ public class Tela {
                     }
 
                     break;
-                    
-                    case 3:
-                    
-                    for (boolean j = true; j == true;) {
                         
+                    case 3:
+                        
+                    for (boolean j = true; j == true;) {
+                            
                         System.out.println("1 - Cajado \n2 - Varinha\n");
                         int menuArma3 = scanner.nextInt();
                         System.out.println();
@@ -106,26 +113,33 @@ public class Tela {
                     }
 
                     break;
-                    
+                        
                     default: System.out.println("Opção inválida! Digite uma opção correta!");
-                    
+                        
                     }
+
                 break;
-                
-                case 2: 
-                System.out.println("Se prepare! A partida irá começar.\n"); 
-                i = 4;
+                    
+                case 2:
+
+                if (k == true) {
+                    System.out.println("Se prepare! A partida irá começar.\n");
+                    i = 4;
+                } else {
+                    System.out.println("Você não pode começar a partida sem ao menos ter criado pelo menos um personagem.\n");
+                    i--;
+                }
+
                 break;
-                
+                    
                 case 3: 
                 this.encerrarJogo(); 
                 break;
-                
+                    
                 default: System.out.println("Opção inválida! Digite uma opção correta!");
-
-            }
         }
-        
+    }
+
         return personagens;
     }
 
