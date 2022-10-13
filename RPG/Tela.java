@@ -137,8 +137,13 @@ public class Tela {
                 break;
                     
                 default: System.out.println("Opção inválida! Digite uma opção correta!");
+                }
+
+        if (i == 2){
+            System.out.println("Os 3 personagens foram criados. Se prepare! A partida irá iniciar.");
         }
-    }
+        
+        }
 
         return personagens;
     }
