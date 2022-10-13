@@ -1,21 +1,6 @@
-public class Mago extends Classe {
+public class Mago extends Personagem {
 
-    private String classe = "Mago";
-    private int atqBase = 20;
-    private int defBase = 10;
-    private int vida = 200;
-
-    public String getClasse() {
-        return classe;
+    public Mago () {
+        super("Mago", 200, 20, 10);
     }
-    public int getAtqBase() {
-        return atqBase;
-    }
-    public int getDefBase() {
-        return defBase;
-    }
-    public int getVida() {
-        return vida;
-    }
-    
 }

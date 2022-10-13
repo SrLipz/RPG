@@ -1,21 +1,6 @@
-public class Arqueiro extends Classe {
+public class Arqueiro extends Personagem {
 
-    private String classe = "Arqueiro";
-    private int atqBase = 20;
-    private int defBase = 30;
-    private int vida = 160;
-
-    public String getClasse() {
-        return classe;
+    public Arqueiro () {
+        super("Arqueiro", 160, 20, 30);
     }
-    public int getAtqBase() {
-        return atqBase;
-    }
-    public int getDefBase() {
-        return defBase;
-    }
-    public int getVida() {
-        return vida;
-    }
-    
 }
