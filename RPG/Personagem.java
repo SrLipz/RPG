@@ -1,5 +1,6 @@
 public abstract class Personagem {
     
+    private boolean defendendo;
     private String nome;
     private String classe;
     private int vida;
@@ -12,6 +13,15 @@ public abstract class Personagem {
         this.vida = vida;
         this.atqBase = atqBase;
         this.defBase = defBase;
+        this.defendendo = false;
+    }
+
+    public boolean isDefendendo() {
+        return defendendo;
+    }
+
+    public void setDefendendo(boolean defendendo) {
+        this.defendendo = defendendo;
     }
 
     public String getNome() {

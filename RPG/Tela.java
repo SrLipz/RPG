@@ -1,11 +1,13 @@
  import java.util.Scanner;
+ import java.util.Random;
 
 public class Tela {
 
     Scanner scanner = new Scanner(System.in);
     Personagem[] personagens = new Personagem[3];
     Dragao dragao = new Dragao();
-    
+    int qtdPersonagem = 0;
+
     public void menuInicio () {
 
         System.out.println("Olá, seja bem vindo ao Heroes of OOP! \n\nVamos começar uma nova partida?\n");
@@ -54,6 +56,7 @@ public class Tela {
             switch(menu2) {
                 case 1: 
 
+                qtdPersonagem++;
                 System.out.println("Qual o tipo de personagem que deseja criar?\n");
                 System.out.println("1 - Arqueiro \n2 - Guerreiro \n3 - Mago\n");
                 int menuPersonagem = scanner.nextInt();
@@ -168,29 +171,40 @@ public class Tela {
 
     public void iniciarTurno() {
 
+        Random random = new Random();
+    
         for (Personagem personagem : personagens) {
             if (personagem != null && personagem.getVida() > 0) {
-                System.out.printf("O personagem %s deve fazer o que?%n", personagem.getClasse());
+                
+                System.out.printf("O personagem %s deve fazer o que?\n", personagem.getClasse());
                 System.out.println("1 - Atacar \n2 - Defender\n");
 
                 int escolhaAcao = scanner.nextInt();
+                System.out.println();
 
                 switch(escolhaAcao) {
                     case 1:
-                        personagem.atacar();
-                        System.out.printf("O personagem %s atacou o %s.%n", personagem.getClasse(), dragao.getClasse());
+                        personagem.setDefendendo(false);
+                        System.out.printf("O personagem %s atacou o %s e causou %d de dano.%n", personagem.getClasse(), dragao.getClasse(), personagem.atacar());
+                        dragao.defenderAtaque(personagem.atacar());
+                        System.out.printf("Agora o %s tem %d de vida.\n", dragao.getClasse(), dragao.getVida());
                         break;
                     case 2:
-                        int acrecimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
-                        System.out.printf("O %s recebeu um acréscimo de %d na defesa.%n", personagem.getClasse(), acrecimoDef);
+                        personagem.setDefendendo(true);
+                        int acrescimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
+                        System.out.printf("O %s recebeu um acréscimo de %d na defesa.%n", personagem.getClasse(), acrescimoDef);
                         break;
                 }
-            } else {
-                if (personagem.getVida() <= 0) {
+            } else if (personagem != null && personagem.getVida() <= 0) {
+
                     System.out.printf("O personagem %s está morto.%n", personagem.getClasse());
-                }
+
             }
         }
+
+        dragao.atacar();
+        Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
+
     }
 
     public void menuMeioTurno() {

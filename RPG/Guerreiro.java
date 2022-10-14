@@ -6,6 +6,7 @@ public class Guerreiro extends Personagem {
     public Guerreiro (ArmaGuerreiro arma) {
         
         super("Guerreiro", 180, 30, 20);
+        this.arma = arma;
         
     }
 

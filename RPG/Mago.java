@@ -4,6 +4,7 @@ public class Mago extends Personagem {
 
     public Mago (ArmaMago arma) {
         super("Mago", 200, 20, 10);
+        this.arma = arma;
     }
 
     public ArmaMago getArma() {

@@ -12,7 +12,8 @@ public class Dragao extends Personagem {
     @Override
     public void defenderAtaque (int ataquePersonagem) {
         int dano = ataquePersonagem - this.getDefBase();
-        this.setVida(this.getDefBase() - dano);
+        this.setVida(this.getVida() - dano);
+        this.getVida();
     }
 
 }
