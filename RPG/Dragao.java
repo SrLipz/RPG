@@ -4,4 +4,17 @@ public class Dragao extends Personagem {
         super("Dragao", 300, 30, 30);
     }
 
+    @Override
+    public void atacar () {
+        int atqDragao;
+        atqDragao = getAtqBase();
+
+    }
+    
+    @Override
+    public void defenderAtaque () {
+        int defDragao;
+        defDragao = getDefBase();
+    }
+
 }
