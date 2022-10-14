@@ -5,6 +5,7 @@ public class Arqueiro extends Personagem {
     public Arqueiro (ArmaArqueiro arma) {
         super("Arqueiro", 160, 20, 30);
         this.arma = arma;
+
     }
 
     public ArmaArqueiro getArma() {

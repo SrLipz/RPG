@@ -178,17 +178,24 @@ public class Tela {
                 switch(escolhaAcao) {
                     case 1:
                         personagem.atacar();
+                        System.out.printf("O personagem %s atacou o %s.%n", personagem.getClasse(), dragao.getClasse());
+                        break;
                     case 2:
                         int acrecimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
+                        System.out.printf("O %s recebeu um acréscimo de %d na defesa.%n", personagem.getClasse(), acrecimoDef);
+                        break;
+                }
+            } else {
+                if (personagem.getVida() <= 0) {
+                    System.out.printf("O personagem %s está morto.%n", personagem.getClasse());
                 }
             }
         }
-
     }
 
     public void menuMeioTurno() {
         
-        System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?");                   
+        System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?");             
         
         int fimTurno = scanner.nextInt();
         System.out.println();
