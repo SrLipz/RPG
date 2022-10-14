@@ -23,5 +23,5 @@ public class Arma {
     public int getDefArma() {
         return defArma;
     }
-    
+
 }

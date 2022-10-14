@@ -19,14 +19,14 @@ public class Arqueiro extends Personagem {
     @Override
     public void atacar () {
         int atqArqueiro;
-        atqArqueiro = getAtqBase() + getAtqArma();
+        atqArqueiro = getAtqBase() + arma.getAtqArma();
 
     }
     
     @Override
     public void defenderAtaque () {
         int defArqueiro;
-        defArqueiro = getDefBase() + getDefArma();
+        defArqueiro = getDefBase() + arma.getDefArma();
     }
 
 

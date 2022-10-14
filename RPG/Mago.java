@@ -6,16 +6,24 @@ public class Mago extends Personagem {
         super("Mago", 200, 20, 10);
     }
 
+    public ArmaMago getArma() {
+        return arma;
+    }
+
+    public void setArma(ArmaMago arma) {
+        this.arma = arma;
+    }
+
     @Override
     public void atacar () {
         int atqArqueiro;
-        atqArqueiro = getAtqBase() + getAtqArma();
+        atqArqueiro = getAtqBase() + arma.getAtqArma();
 
     }
     
     @Override
     public void defenderAtaque () {
         int defArqueiro;
-        defArqueiro = getDefBase() + getDefArma();
+        defArqueiro = getDefBase() + arma.getDefArma();
     }
 }

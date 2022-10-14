@@ -4,9 +4,9 @@ public class Main {
     Tela tela = new Tela();
 
     tela.menuInicio();
-    Personagem[] personagens = tela.menuPersonagem();
+    tela.menuPersonagem();
 
-    Personagem arqueiro = new Arqueiro(ArcoLongo);
+
     
     }
 }
