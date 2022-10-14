@@ -15,19 +15,17 @@ public class Arqueiro extends Personagem {
         this.arma = arma;
     }
     
-
     @Override
-    public void atacar () {
-        int atqArqueiro;
-        atqArqueiro = getAtqBase() + arma.getAtqArma();
-
+    public int atacar () {
+        return this.getAtqBase() + this.getArma().getAtqArma();
     }
     
     @Override
-    public void defenderAtaque () {
+    public void defenderAtaque (int ataqueDragao) {
         int defArqueiro;
-        defArqueiro = getDefBase() + arma.getDefArma();
+        defArqueiro = this.getDefBase() + this.getArma().getDefArma();
+        int dano = ataqueDragao - defArqueiro;
+        this.setVida(this.getDefBase() - dano);
     }
-
 
 }

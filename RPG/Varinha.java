@@ -1,6 +1,6 @@
 public class Varinha extends ArmaMago {
     
-    public Varinha(String nomeArma, int atqArma, int defArma) {
+    public Varinha() {
         super("Varinha", 16, 19);
     }
         

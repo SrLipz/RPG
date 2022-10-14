@@ -1,6 +1,6 @@
 public class Balestra extends ArmaArqueiro {
     
-    public Balestra(String nomeArma, int atqArma, int defArma) {
+    public Balestra() {
         super("Balestra", 15, 10);
     }
         

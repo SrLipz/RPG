@@ -3,7 +3,7 @@ public class Guerreiro extends Personagem {
     private ArmaGuerreiro arma;
 
 
-    public Guerreiro () {
+    public Guerreiro (ArmaGuerreiro arma) {
         
         super("Guerreiro", 180, 30, 20);
         
@@ -18,16 +18,20 @@ public class Guerreiro extends Personagem {
     }
 
     @Override
-    public void atacar () {
-        int atqArqueiro;
-        atqArqueiro = getAtqBase() + arma.getAtqArma();
-
+    public int atacar () {
+        return this.getAtqBase() + this.getArma().getAtqArma();
     }
     
     @Override
-    public void defenderAtaque () {
-        int defArqueiro;
-        defArqueiro = getDefBase() + arma.getDefArma();
+    public void defenderAtaque (int ataqueDragao) {
+        int defGuerreiro;
+        defGuerreiro = this.getDefBase() + this.getArma().getDefArma();
+        int dano = ataqueDragao - defGuerreiro;
+        this.setVida(this.getDefBase() - dano);
+    }
+
+    public void defender() {
+        
     }
 
 }

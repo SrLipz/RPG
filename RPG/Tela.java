@@ -3,6 +3,8 @@
 public class Tela {
 
     Scanner scanner = new Scanner(System.in);
+    Personagem[] personagens = new Personagem[3];
+    Dragao dragao = new Dragao();
     
     public void menuInicio () {
 
@@ -13,7 +15,7 @@ public class Tela {
             System.out.println("1 - Iniciar uma partida \n2 - Sair do jogo\n");
 
             int menu = scanner.nextInt();
-            System.out.println();  
+            System.out.println();
 
             switch(menu) {
 
@@ -23,7 +25,7 @@ public class Tela {
                 break;
                 
                 case 2: 
-                this.encerrarJogo(); 
+                this.encerrarJogo();
                 break;
                 
                 default: System.out.println("Opção inválida! Digite uma opção correta.\n");
@@ -31,9 +33,7 @@ public class Tela {
         }
     }
 
-    public Personagem[] menuPersonagem () {
-
-        Personagem[] personagens = new Personagem[3];
+    public void menuPersonagem () {
 
         System.out.println("O que deseja fazer?\n");
 
@@ -72,8 +72,8 @@ public class Tela {
                         System.out.println();
 
                         switch (menuArma1) {
-                            case 1: personagens[i] = new ArcoLongo(); j = false; break;
-                            case 2: personagens[i] = new Balestra(); j = false; break;
+                            case 1: personagens[i] = new Arqueiro(new ArcoLongo()); j = false; break;
+                            case 2: personagens[i] = new Arqueiro(new Balestra()); j = false; break;
                             default: System.out.println("Opção inválida! Digite uma opção correta!");
                         }
                     }
@@ -89,8 +89,8 @@ public class Tela {
                         System.out.println();
 
                         switch (menuArma2) {
-                            case 1: personagens[i] = new Espada(); j = false; break;
-                            case 2: personagens[i] = new Machado(); j = false; break;
+                            case 1: personagens[i] = new Guerreiro(new Espada()); j = false; break;
+                            case 2: personagens[i] = new Guerreiro(new Machado()); j = false; break;
                             default: System.out.println("Opção inválida! Digite uma opção correta!");
                         }
                     }
@@ -106,8 +106,8 @@ public class Tela {
                         System.out.println();
 
                         switch (menuArma3) {
-                            case 1: personagens[i] = new Cajado(); j = false; break;
-                            case 2: personagens[i] = new Varinha(); j = false; break;
+                            case 1: personagens[i] = new Mago(new Cajado()); j = false; break;
+                            case 2: personagens[i] = new Mago(new Varinha()); j = false; break;
                             default: System.out.println("Opção inválida! Digite uma opção correta!");
                         }
                     }
@@ -144,8 +144,6 @@ public class Tela {
         }
         
         }
-
-        return personagens;
     }
 
     public void encerrarJogo () {
@@ -155,7 +153,40 @@ public class Tela {
 
     }
 
-    public void menuTurno() {
+    public void menuInicioTurno() {
+        System.out.println("1 - Iniciar turno. \n2 - Deseja sair do jogo?\n");                   
+        
+        int fimTurno = scanner.nextInt();
+        System.out.println();
+
+        switch (fimTurno) {
+            case 1: break;
+            case 2: this.encerrarJogo(); break;
+            default: System.out.println("Opção inválida! Digite uma opção correta!\n");
+        }
+    }
+
+    public void iniciarTurno() {
+
+        for (Personagem personagem : personagens) {
+            if (personagem != null && personagem.getVida() > 0) {
+                System.out.printf("O personagem %s deve fazer o que?%n", personagem.getClasse());
+                System.out.println("1 - Atacar \n2 - Defender\n");
+
+                int escolhaAcao = scanner.nextInt();
+
+                switch(escolhaAcao) {
+                    case 1:
+                        personagem.atacar();
+                    case 2:
+                        int acrecimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
+                }
+            }
+        }
+
+    }
+
+    public void menuMeioTurno() {
         
         System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?");                   
         

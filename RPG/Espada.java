@@ -1,6 +1,6 @@
 public class Espada extends ArmaGuerreiro {
     
-    public Espada(String nomeArma, int atqArma, int defArma) {
+    public Espada() {
         super("Espada", 10, 15);
     }
 }

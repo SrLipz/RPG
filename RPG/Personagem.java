@@ -1,4 +1,4 @@
-public class Personagem {
+public abstract class Personagem {
     
     private String nome;
     private String classe;
@@ -62,8 +62,8 @@ public class Personagem {
         this.arma = arma;
     }
     
-    public void atacar() {}
+    public abstract int atacar();
     
-    public void defenderAtaque() {}
+    public abstract void defenderAtaque(int ataqueDragao);
 
 }
