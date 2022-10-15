@@ -11,28 +11,28 @@ public class Tela {
     public void menuInicio () {
 
         System.out.println("Olá, seja bem vindo ao Heroes of OOP! \n\nVamos começar uma nova partida?\n");
-
-        for (boolean i = true; i == true;) {
-
+        
+        Scanner scanner = new Scanner(System.in);
+        boolean valido;
+        
+        do {
             System.out.println("1 - Iniciar uma partida \n2 - Sair do jogo\n");
+            int opcaoMenuInicio = scanner.nextInt();
+            
+            valido = opcaoMenuInicio == 1 || opcaoMenuInicio == 2;
 
-            int menu = scanner.nextInt();
-            System.out.println();
-
-            switch(menu) {
-
-                case 1: 
-                System.out.println("Certo, vamos em frente!\n");
-                i = false;
-                break;
-                
-                case 2: 
-                this.encerrarJogo();
-                break;
-                
-                default: System.out.println("Opção inválida! Digite uma opção correta.\n");
+            if (!valido) {
+                System.out.println("Opção inválida! Digite uma opção correta.\n");
+            } else {
+                if (opcaoMenuInicio == 1) {
+                    System.out.println("Certo, vamos em frente!\n");
+                    break;
+                } else if (opcaoMenuInicio == 2) {
+                        this.encerrarJogo(); 
+                        break;
+                }
             }
-        }
+        } while (!valido);
     }
 
     public void menuPersonagem () {
@@ -143,7 +143,7 @@ public class Tela {
                 }
 
         if (i == 2){
-            System.out.println("Os 3 personagens foram criados. Se prepare! A partida irá iniciar.");
+            System.out.println("Os 3 personagens foram criados. Se prepare! A partida irá iniciar.\n");
         }
         
         }
@@ -157,6 +157,7 @@ public class Tela {
     }
 
     public void menuInicioTurno() {
+        
         System.out.println("1 - Iniciar turno. \n2 - Deseja sair do jogo?\n");                   
         
         int fimTurno = scanner.nextInt();
@@ -169,7 +170,7 @@ public class Tela {
         }
     }
 
-    public void iniciarTurno() {
+    public void turno() {
 
         Random random = new Random();
     
@@ -177,7 +178,7 @@ public class Tela {
             if (personagem != null && personagem.getVida() > 0) {
                 
                 System.out.printf("O personagem %s deve fazer o que?\n", personagem.getClasse());
-                System.out.println("1 - Atacar \n2 - Defender\n");
+                System.out.println("\n1 - Atacar \n2 - Defender\n");
 
                 int escolhaAcao = scanner.nextInt();
                 System.out.println();
@@ -185,39 +186,54 @@ public class Tela {
                 switch(escolhaAcao) {
                     case 1:
                         personagem.setDefendendo(false);
-                        System.out.printf("O personagem %s atacou o %s e causou %d de dano.%n", personagem.getClasse(), dragao.getClasse(), personagem.atacar());
+                        System.out.printf("\nO personagem %s atacou o %s e causou %d de dano.\n", personagem.getClasse(), dragao.getClasse(), personagem.atacar());
                         dragao.defenderAtaque(personagem.atacar());
-                        System.out.printf("Agora o %s tem %d de vida.\n", dragao.getClasse(), dragao.getVida());
+                        System.out.printf("\nAgora o %s tem %d de vida.\n", dragao.getClasse(), dragao.getVida());
                         break;
                     case 2:
                         personagem.setDefendendo(true);
                         int acrescimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
-                        System.out.printf("O %s recebeu um acréscimo de %d na defesa.%n", personagem.getClasse(), acrescimoDef);
+                        System.out.printf("\nO %s recebeu um acréscimo de %d na defesa.\n", personagem.getClasse(), acrescimoDef);
                         break;
                 }
             } else if (personagem != null && personagem.getVida() <= 0) {
 
-                    System.out.printf("O personagem %s está morto.%n", personagem.getClasse());
+                    System.out.printf("\nO personagem %s está morto.\n", personagem.getClasse());
 
             }
         }
 
-        dragao.atacar();
+        
         Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
+        dragao.atacar();
+
+        this.menuFimTurno();
 
     }
 
-    public void menuMeioTurno() {
-        
-        System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?");             
-        
-        int fimTurno = scanner.nextInt();
-        System.out.println();
+    public void menuFimTurno() {
 
-        switch (fimTurno) {
-            case 1: break;
-            case 2: this.encerrarJogo(); break;
-            default: System.out.println("Opção inválida! Digite uma opção correta!");
-        }
+        System.out.println("\nFim de turno!\n");
+        boolean valido;
+
+        do { 
+            System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?\n\n");             
+            int opcaoMenuFimTurno = scanner.nextInt();
+            System.out.println();
+
+            valido = opcaoMenuFimTurno == 1 || opcaoMenuFimTurno == 2;
+
+            if (!valido){
+                System.out.println("Opção inválida! Digite uma opção correta!");
+            } else {
+                if (opcaoMenuFimTurno == 1) {
+                    break;
+                } else if (opcaoMenuFimTurno == 2) {
+                    this.encerrarJogo(); break;
+                }
+            }
+        } while(!valido);
+        
     }
+
 }

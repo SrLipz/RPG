@@ -6,7 +6,7 @@ public class Main {
     tela.menuInicio();
     tela.menuPersonagem();
     tela.menuInicioTurno();
-    tela.iniciarTurno();
+    tela.turno();
 
     
     }
