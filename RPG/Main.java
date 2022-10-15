@@ -3,10 +3,13 @@ public class Main {
         
     Tela tela = new Tela();
 
+    //tela.menuInicio();
+    //tela.menuPersonagem();
+    //tela.menuInicioTurno();
+    //tela.turno();
+
     tela.menuInicio();
-    tela.menuPersonagem();
-    tela.menuInicioTurno();
-    tela.turno();
+    tela.menuPrincipal();
     
     }
 }
