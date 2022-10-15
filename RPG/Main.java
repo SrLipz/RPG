@@ -10,6 +10,8 @@ public class Main {
 
     tela.menuInicio();
     tela.menuPrincipal();
+    tela.menuInicioTurno();
+    tela.turno();
     
     }
 }
