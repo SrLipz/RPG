@@ -11,8 +11,6 @@ public class Tela {
     public void menuInicio () {
 
         System.out.println("Olá, seja bem vindo ao Heroes of OOP! \n\nVamos começar uma nova partida?\n");
-        
-        Scanner scanner = new Scanner(System.in);
         boolean valido;
         
         do {
@@ -27,9 +25,9 @@ public class Tela {
                 if (opcaoMenuInicio == 1) {
                     System.out.println("Certo, vamos em frente!\n");
                     break;
-                } else if (opcaoMenuInicio == 2) {
-                        this.encerrarJogo(); 
-                        break;
+                } else {
+                    this.encerrarJogo(); 
+                    break;
                 }
             }
         } while (!valido);
@@ -49,7 +47,7 @@ public class Tela {
             int menu2 = scanner.nextInt();
             System.out.println();
 
-            if (menu2 == 1){ 
+            if (menu2 == 1){
                 k = true; // para verificar se um personagem foi criado
             }
 
@@ -139,8 +137,9 @@ public class Tela {
                 this.encerrarJogo(); 
                 break;
                     
-                default: System.out.println("Opção inválida! Digite uma opção correta!");
-                }
+                default: System.out.println("Opção inválida! Digite uma opção correta!"); i--;
+                
+            }
 
         if (i == 2){
             System.out.println("Os 3 personagens foram criados. Se prepare! A partida irá iniciar.\n");
@@ -217,7 +216,7 @@ public class Tela {
         boolean valido;
 
         do { 
-            System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?\n\n");             
+            System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?\n");             
             int opcaoMenuFimTurno = scanner.nextInt();
             System.out.println();
 
@@ -228,8 +227,9 @@ public class Tela {
             } else {
                 if (opcaoMenuFimTurno == 1) {
                     break;
-                } else if (opcaoMenuFimTurno == 2) {
-                    this.encerrarJogo(); break;
+                } else {
+                    this.encerrarJogo(); 
+                    break;
                 }
             }
         } while(!valido);
