@@ -270,7 +270,6 @@ public class Tela {
             this.menuFimTurno();
 
         } while (vidaTotalPersonagens > 0);
-
     }
 
     private void menuFimTurno() {
@@ -294,7 +293,6 @@ public class Tela {
                     this.encerrarJogo(); break;
                 }
             }
-
         } while(!valido);
     }   
 }
