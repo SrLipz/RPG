@@ -75,6 +75,6 @@ public abstract class Personagem {
     
     public abstract void atacar(Personagem personagens);
     
-    public abstract void defenderAtaque(int ataqueDragao);
+    public abstract void defenderAtaque(Personagem personagens);
 
 }

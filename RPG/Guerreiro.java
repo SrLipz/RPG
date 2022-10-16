@@ -25,15 +25,15 @@ public class Guerreiro extends Personagem {
         System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
                             this.getNome(), 
                             this.getArma().getNomeArma(),
-                            personagem.getClass(),  
+                            personagem.getNome(),  
                             atqComArma);
     }
     
     @Override
-    public void defenderAtaque (int ataqueDragao) {
+    public void defenderAtaque (Personagem personagem) {
         int defComArma;
         defComArma = this.getDefBase() + this.getArma().getDefArma();
-        int dano = ataqueDragao - defComArma;
+        int dano = personagem.getAtqBase() - defComArma;
         if (dano <= 0) {
             dano = 0;
         }

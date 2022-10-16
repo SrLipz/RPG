@@ -15,18 +15,21 @@ public class Dragao extends Personagem {
     }
     
     @Override
-    public void defenderAtaque (int ataquePersonagem) {
-        int dano = ataquePersonagem - this.getDefBase();
+    public void defenderAtaque (Personagem personagem) {
+        int dano = (personagem.getAtqBase() + personagem.getArma().getAtqArma()) - this.getDefBase();
+        if (dano < 0){
+            dano = 0;
+        }
         this.setVida(this.getVida() - dano);
 
         System.out.printf("%s: \nDefendeu o ataque com suas escamas,\npontos de defesa: %d\n", 
-                                getClasse(), 
-                                getDefBase());
+                                this.getClasse(), 
+                                this.getDefBase());
         System.out.println();  
         System.out.printf("Dano final: %d", 
                                 dano);
         System.out.printf("\nStatus de vida do %s: %d.\n", 
-                                getClasse(), 
-                                getVida());        
+                                this.getClasse(), 
+                                this.getVida());        
     }
 }

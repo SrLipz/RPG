@@ -27,10 +27,10 @@ public class Mago extends Personagem {
     }
     
     @Override
-    public void defenderAtaque (int ataqueDragao) {
+    public void defenderAtaque (Personagem personagem) {
         int defComArma;
         defComArma = this.getDefBase() + this.getArma().getDefArma();
-        int dano = ataqueDragao - defComArma;
+        int dano = personagem.getAtqBase() - defComArma;
         if (dano <= 0) {
             dano = 0;
         }

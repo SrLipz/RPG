@@ -1,6 +1,6 @@
 public class Machado extends ArmaGuerreiro {
     
     public Machado() {
-        super("Machado", 10, 15);
+        super("Machado", 17, 8);
     }
 }

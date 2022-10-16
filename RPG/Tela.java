@@ -212,7 +212,7 @@ public class Tela {
 
         Dragao dragao = new Dragao();
         Random random = new Random();
-        
+
         int vidaTotalPersonagens = 0;
 
         for (int l = 0; l < qtdPersonagem; l++) {
@@ -220,56 +220,86 @@ public class Tela {
                 vidaTotalPersonagens += personagens[l].getVida();
             }
         }
-        
+
         do {
             for (Personagem personagem : personagens) {
                 if (personagem != null && personagem.getVida() > 0) {
 
                     System.out.printf("Qual ação o %s deve fazer?\n", 
-                                        personagem.getClasse());
+                                            personagem.getClasse());
                     System.out.println("\n1 - Atacar \n2 - Defender\n");
                     int escolhaAcao = scanner.nextInt();
                     System.out.println();
 
                     switch(escolhaAcao) {
 
-                        case 1:
+                            case 1:
 
-                            personagem.setDefendendo(false);
-                            personagem.atacar(dragao);
-                            System.out.println();
-                            dragao.defenderAtaque(personagem);
-                            System.out.println();
-                            
-                            if (dragao.getVida() <= 0) {
-                                System.out.println("Você venceu! O dragão foi derrotado!");
-                                this.encerrarJogo();
+                                personagem.setDefendendo(false);
+                                personagem.atacar(dragao);
+                                System.out.println();
+                                dragao.defenderAtaque(personagem);
+                                System.out.println();
+                                
+                                
+                                if (dragao.getVida() <= 0) {
+                                    System.out.println("Você venceu! O dragão foi derrotado!");
+                                    this.encerrarJogo();
+                                    break;
+                                }
                                 break;
-                            }
-                            break;
 
-                        case 2:
+                            case 2:
 
-                            personagem.setDefendendo(true);
-                            int acrescimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
-                            System.out.printf("\nO %s recebeu um acréscimo de %d na defesa.\n", 
-                                                personagem.getClasse(), 
-                                                acrescimoDef);
-                            break;
-                    }
+                                personagem.setDefendendo(true);
+                                int acrescimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
+                                System.out.printf("\nO %s recebeu um acréscimo de %d na defesa.\n", 
+                                                    personagem.getClasse(), 
+                                                    acrescimoDef);
+                                break;
+                        }
                 } else if (personagem != null && personagem.getVida() <= 0) {
-                        System.out.printf("\nO personagem %s está morto.\n", 
+                    System.out.printf("\nO personagem %s está morto.\n", 
                                             personagem.getClasse());
                 }
             }
+                
 
-            Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
-            dragao.atacar(recebedorAtaque);
-            System.out.println();
-            recebedorAtaque.defenderAtaque(dragao);
+            boolean valido;
+            int contador = 0;        
+            do {
+                Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
+                valido = recebedorAtaque.getVida() > 0;
+                contador++;
+                if (recebedorAtaque.getVida() > 0) {
+                    dragao.atacar(recebedorAtaque);
+                    System.out.println();
+                    recebedorAtaque.defenderAtaque(dragao);
+                    int dano = dragao.getAtqBase() - (recebedorAtaque.getDefBase() + recebedorAtaque.getArma().getDefArma());
+                    if (dano < 0){
+                        dano = 0;
+                    }
+                    System.out.println(vidaTotalPersonagens);
+                    if (recebedorAtaque.getVida() <= 0){
+                        System.out.printf("%s morreu!\n", recebedorAtaque.getClasse());
+                        if (vidaTotalPersonagens <= 0){
+                            System.out.println("O Dragão venceu! Todos os seus personagem foram detonados!");
+                            this.encerrarJogo();
+                            break;
+                        }
+                    }
+                    break;
+                } else {
+                    if (contador == 30){
+                        break;
+                    }
+                }
+            } while (!valido);
+
             this.menuFimTurno();
 
         } while (vidaTotalPersonagens > 0);
+
     }
 
     private void menuFimTurno() {

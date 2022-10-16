@@ -23,25 +23,25 @@ public class Arqueiro extends Personagem {
         System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
                             this.getNome(), 
                             this.getArma().getNomeArma(),
-                            personagem.getClasse(),  
+                            personagem.getNome(),  
                             atqComArma);
     }
     
     @Override
-    public void defenderAtaque (int ataqueDragao) {
+    public void defenderAtaque (Personagem personagem) {
         int defComArma;
         defComArma = this.getDefBase() + this.getArma().getDefArma();
-        int dano = ataqueDragao - defComArma;
+        int dano = personagem.getAtqBase() - defComArma;
         if (dano <= 0) {
             dano = 0;
         }
-        this.setVida(this.getVida() - dano);
+        this.setVida(getVida() - dano);
         System.out.printf("%s: \nDefendeu o ataque com %s,\npontos de defesa: %d\n", 
                             this.getClasse(), 
-                            this.getArma().getNomeArma(), 
+                            this.getArma().getNomeArma(),
                             defComArma);
         System.out.printf("\nDano final: %d\n", dano);
-        System.out.printf("Status de vida do %s: %d.\n", getClasse(), getVida());
+        System.out.printf("Status de vida do %s: %d.\n", this.getClasse(), this.getVida());
     }
 
 }
