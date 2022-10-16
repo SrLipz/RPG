@@ -4,10 +4,6 @@ import java.util.Random;
 public class Tela {
 
     Scanner scanner = new Scanner(System.in);
-    Personagem[] personagens = new Personagem[3];
-    Dragao dragao = new Dragao();
-    int qtdPersonagem = 0;
-    int i = 0;
     
     public void menuInicio () {
 
@@ -39,6 +35,8 @@ public class Tela {
         System.out.println("O jogo foi encerrado!");
         System.exit(0);
     }
+
+    int qtdPersonagem = 0;
 
     public void menuPrincipal () {
 
@@ -105,6 +103,9 @@ public class Tela {
             
         } while (!valido);
     }
+
+    Personagem[] personagens = new Personagem[3];
+    int i = 0;
 
     private void menuEscolhaArma (int opcaoMenuPersonagem) {
 
@@ -192,8 +193,8 @@ public class Tela {
                 }
                 
             } while (!valido);
-
             break;
+
             default:;
                 
         }
@@ -225,11 +226,12 @@ public class Tela {
 
     public void turno() {
 
+        Dragao dragao = new Dragao();
         Random random = new Random();
         
         int vidaTotalPersonagens = 0;
 
-        for (int l = 0; l <= qtdPersonagem; l++) {
+        for (int l = 0; l < qtdPersonagem; l++) {
             if (personagens[l] != null) {
                 vidaTotalPersonagens += personagens[l].getVida();
             }
@@ -241,7 +243,8 @@ public class Tela {
 
                 if (personagem != null && personagem.getVida() > 0) {
                     
-                    System.out.printf("Qual ação o %s deve fazer?\n", personagem.getClasse());
+                    System.out.printf("Qual ação o %s deve fazer?\n", 
+                                        personagem.getClasse());
                     System.out.println("\n1 - Atacar \n2 - Defender\n");
                     int escolhaAcao = scanner.nextInt();
                     System.out.println();
@@ -249,14 +252,16 @@ public class Tela {
                     switch(escolhaAcao) {
                         case 1:
                             personagem.setDefendendo(false);
-                            System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", personagem.getClasse(), personagem.getArma().getNomeArma(), dragao.getClasse(), personagem.atacar());
+                            System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
+                                                personagem.getClasse(), 
+                                                personagem.getArma().getNomeArma(), 
+                                                dragao.getClasse(), 
+                                                personagem.atacar());
+                            System.out.println();
                             dragao.defenderAtaque(personagem.atacar());
                             System.out.println();
-                            int dano = personagem.atacar() - dragao.getDefBase();
-                            System.out.printf("%s: \nDefendeu o ataque com suas escamas,\npontos de defesa: %d\n", dragao.getClasse(), dragao.getDefBase());
+                            
                             System.out.println();
-                            System.out.printf("Dano final: %d", dano);
-                            System.out.printf("\nStatus de vida do %s: %d.\n", dragao.getClasse(), dragao.getVida());
                             if (dragao.getVida() <= 0) {
                                 System.out.println("Você venceu! O dragão foi derrotado!");
                                 this.encerrarJogo();
@@ -266,17 +271,26 @@ public class Tela {
                         case 2:
                             personagem.setDefendendo(true);
                             int acrescimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
-                            System.out.printf("\nO %s recebeu um acréscimo de %d na defesa.\n", personagem.getClasse(), acrescimoDef);
+                            System.out.printf("\nO %s recebeu um acréscimo de %d na defesa.\n", 
+                                                personagem.getClasse(), 
+                                                acrescimoDef);
                             break;
                     }
                 } else if (personagem != null && personagem.getVida() <= 0) {
-                        System.out.printf("\nO personagem %s está morto.\n", personagem.getClasse());
+                        System.out.printf("\nO personagem %s está morto.\n", 
+                                            personagem.getClasse());
                 }
             }
 
             Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
-            
             dragao.atacar();
+            
+            System.out.printf("%s: \nUsou sua bola de fogo para atacar o %s,\npontos de ataque: %d\n", 
+                                                dragao.getClasse(), 
+                                                recebedorAtaque.getClasse(), 
+                                                dragao.atacar());
+            System.out.println();
+            recebedorAtaque.defenderAtaque(dragao.atacar());
 
             this.menuFimTurno();
 
@@ -284,8 +298,9 @@ public class Tela {
 
     }
 
-    public void menuFimTurno() {
+    private void menuFimTurno() {
 
+        System.out.println();
         System.out.println("\nFim de turno!\n");
         boolean valido;
 

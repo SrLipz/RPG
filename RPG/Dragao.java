@@ -13,7 +13,15 @@ public class Dragao extends Personagem {
     public void defenderAtaque (int ataquePersonagem) {
         int dano = ataquePersonagem - this.getDefBase();
         this.setVida(this.getVida() - dano);
-        this.getVida();
-    }
 
+        System.out.printf("%s: \nDefendeu o ataque com suas escamas,\npontos de defesa: %d\n", 
+                                getClasse(), 
+                                getDefBase());
+        System.out.println();  
+        System.out.printf("Dano final: %d", 
+                                dano);
+        System.out.printf("\nStatus de vida do %s: %d.\n", 
+                                getClasse(), 
+                                getVida());        
+    }
 }

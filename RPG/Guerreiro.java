@@ -25,14 +25,19 @@ public class Guerreiro extends Personagem {
     
     @Override
     public void defenderAtaque (int ataqueDragao) {
-        int defGuerreiro;
-        defGuerreiro = this.getDefBase() + this.getArma().getDefArma();
-        int dano = ataqueDragao - defGuerreiro;
-        this.setVida(this.getDefBase() - dano);
-    }
-
-    public void defender() {
-        
+        int defComArma;
+        defComArma = this.getDefBase() + this.getArma().getDefArma();
+        int dano = ataqueDragao - defComArma;
+        if (dano <= 0) {
+            dano = 0;
+        }
+        this.setVida(this.getVida() - dano);
+        System.out.printf("%s: \nDefendeu o ataque com %s,\npontos de defesa: %d\n", 
+                            this.getClasse(), 
+                            this.getArma().getNomeArma(), 
+                            defComArma);
+        System.out.printf("\nDano final: %d\n", dano);
+        System.out.printf("Status de vida do %s: %d.\n", getClasse(), getVida());
     }
 
 }

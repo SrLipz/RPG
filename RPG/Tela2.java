@@ -202,14 +202,19 @@ public class Tela2 {
                 }
             } else if (personagem != null && personagem.getVida() <= 0) {
 
-                    System.out.printf("\nO personagem %s está morto.\n", personagem.getClasse());
+                    System.out.printf("\nO personagem %s está morto e não pode mais jogar.\n", 
+                                        personagem.getClasse());
 
             }
         }
-
         
         Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
         dragao.atacar();
+        int danoSofridoAtaqueDragao = dragao.atacar() - recebedorAtaque.getVida();
+        recebedorAtaque.setVida(recebedorAtaque.getVida() - danoSofridoAtaqueDragao);
+        System.out.printf("O dragão atacou %s, ele defendeu e ficou com %d de vida", 
+                            recebedorAtaque.getClasse(),
+                            recebedorAtaque.getVida());
 
         this.menuFimTurno();
 
