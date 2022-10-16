@@ -8,7 +8,8 @@ public abstract class Personagem {
     private int defBase;
     private Arma arma;
 
-    public Personagem(String classe, int vida, int atqBase, int defBase) {
+    public Personagem(String nome, String classe, int vida, int atqBase, int defBase) {
+        this.nome = nome;
         this.classe = classe;
         this.vida = vida;
         this.atqBase = atqBase;
@@ -72,8 +73,11 @@ public abstract class Personagem {
         this.arma = arma;
     }
     
-    public abstract int atacar();
+    public abstract void atacar(Personagem personagens);
     
     public abstract void defenderAtaque(int ataqueDragao);
+
+    public void defenderAtaque(Dragao dragao) {
+    }
 
 }

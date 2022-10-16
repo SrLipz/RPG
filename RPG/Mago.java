@@ -2,8 +2,8 @@ public class Mago extends Personagem {
 
     private ArmaMago arma;
 
-    public Mago (ArmaMago arma) {
-        super("Mago", 200, 20, 10);
+    public Mago (String nome, ArmaMago arma) {
+        super(nome, "Mago", 200, 20, 10);
         this.arma = arma;
     }
 
@@ -16,15 +16,30 @@ public class Mago extends Personagem {
     }
 
     @Override
-    public int atacar () {
-        return this.getAtqBase() + this.getArma().getAtqArma();
+    public void atacar (Personagem personagem) {
+        int atqComArma;
+        atqComArma = this.getAtqBase() + this.getArma().getAtqArma();
+        System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
+                            this.getNome(), 
+                            this.getArma().getNomeArma(),
+                            personagem.getClass(),  
+                            atqComArma);
     }
     
     @Override
     public void defenderAtaque (int ataqueDragao) {
-        int defMago;
-        defMago = this.getDefBase() + this.getArma().getDefArma();
-        int dano = ataqueDragao - defMago;
-        this.setVida(this.getDefBase() - dano);
+        int defComArma;
+        defComArma = this.getDefBase() + this.getArma().getDefArma();
+        int dano = ataqueDragao - defComArma;
+        if (dano <= 0) {
+            dano = 0;
+        }
+        this.setVida(this.getVida() - dano);
+        System.out.printf("%s: \nDefendeu o ataque com %s,\npontos de defesa: %d\n", 
+                            this.getClasse(), 
+                            this.getArma().getNomeArma(), 
+                            defComArma);
+        System.out.printf("\nDano final: %d\n", dano);
+        System.out.printf("Status de vida do %s: %d.\n", getClasse(), getVida());
     }
 }

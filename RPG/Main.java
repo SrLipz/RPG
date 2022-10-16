@@ -6,10 +6,9 @@ public class Main {
     Tela tela = new Tela();
 
     tela.menuInicio();
-    tela.menuPersonagem();
+    tela.menuPrincipal();
     tela.menuInicioTurno();
     tela.turno();
-
     
     }
 }

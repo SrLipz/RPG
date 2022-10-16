@@ -1,8 +1,9 @@
- import java.util.Scanner;
- import java.util.Random;
- import java.io.IOException;
+import java.util.Scanner;
+import java.util.Random;
+import java.io.IOException;
 
 public class Tela {
+
     public void limpar () throws InterruptedException, IOException{
 
         //Limpa a tela no windows, no linux e no MacOS
@@ -12,250 +13,320 @@ public class Tela {
             Runtime.getRuntime().exec("clear");
     
         }
-
-
+        
     Scanner scanner = new Scanner(System.in);
-    Personagem[] personagens = new Personagem[3];
-    Dragao dragao = new Dragao();
-    int qtdPersonagem = 0;
-
+    
     public void menuInicio () throws InterruptedException, IOException {
         this.limpar();
-        System.out.println("Olá, seja bem vindo ao Heroes of OOP! \n\nVamos começar uma nova partida?\n");// iniciação do menu do jogo
-        
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Olá, seja bem vindo ao Heroes of OOP! \n\nVamos começar uma nova partida?\n");
         boolean valido;
-
         
         do {
-            System.out.println("1 - Iniciar uma partida \n2 - Sair do jogo\n"); // Opção de escolha para iniciar ou sair do jogo
+            System.out.println("1 - Iniciar uma partida \n2 - Sair do jogo\n");
             int opcaoMenuInicio = scanner.nextInt();
-            
-            valido = opcaoMenuInicio == 1 || opcaoMenuInicio == 2; 
+            valido = opcaoMenuInicio == 1 || opcaoMenuInicio == 2;
 
             if (!valido) {
-                System.out.println("Opção inválida! Digite uma opção correta.\n"); 
+                this.limpar();
+                System.out.println("Opção inválida! Digite uma opção correta.\n");
+
+                System.out.println("Favor Selecionar um dos Numeros a baixo.\n");
             } else {
                 if (opcaoMenuInicio == 1) {
-                    System.out.println("Certo, vamos em frente!\n"); // Caso o Usuario Digite um numero 1 para continuar o jogo
+                    this.limpar();
+                    System.out.println("Certo, vamos em frente!\n");
                     break;
                 } else if (opcaoMenuInicio == 2) {
-                        this.encerrarJogo();  // Caso o Usuario Digite um numero 2 para encerrar o jogo
+                        this.limpar();
+                        this.encerrarJogo(); 
                         break;
                 }
-                
             }
         } while (!valido);
-        this.limpar();
-    
     }
 
-    public void menuPersonagem () throws InterruptedException, IOException {
-
-        System.out.println("O que deseja fazer?\n"); 
-
-        boolean k = false; // verificar algum Personagem já foi criado
-        this.limpar();
-        for (int i = 0; i < 3 ;i++) {
-            this.limpar();
-            System.out.printf("Atualmente você tem %S Personagen(s) Criado(s).\n",i);//Informa quantos Personagens Criados o Usuario tem
-
-            System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo\n");//Mostra as informações para a escolha do proximo passo 
-            int menu2 = scanner.nextInt();
-            System.out.println();
-            this.limpar();
-
-            if (menu2 == 1){ 
-                k = true; 
-            }
-
-            switch(menu2) {//Caso o Usuario selecione a opção "1" iniciar a criação do personagem
-                case 1: 
-
-                qtdPersonagem++;
-                System.out.println("Qual o tipo de personagem que deseja criar?\n");
-                System.out.println("1 - Arqueiro \n2 - Guerreiro \n3 - Mago\n");//Mostra as informações para a escolha o personagem
-                int menuPersonagem = scanner.nextInt();
-                this.limpar();
-                System.out.println();
-                System.out.println("Selecione a arma:\n");// iniciar a escolha das armas do personagem
-                
-            
-                switch(menuPersonagem) {
-                        
-                    case 1:
-
-                    for (boolean j = true; j == true;) {
-
-                        System.out.println("1 - Arco Longo \n2 - Balestra\n");//opções das armas do personagem Arqueiro                   
-                        int menuArma1 = scanner.nextInt();
-                        System.out.println();
-
-                        switch (menuArma1) {//Escolhe a Arma  do Arqueiro
-                            case 1: personagens[i] = new Arqueiro(new ArcoLongo()); j = false; break;
-                            case 2: personagens[i] = new Arqueiro(new Balestra()); j = false; break;
-                            default: System.out.println("Opção inválida! Digite uma opção correta!");
-                            this.limpar();
-                        }
-                    }
-
-                    break;
-                        
-                    case 2:
-
-                    for (boolean j = true; j == true;) {
-
-                        System.out.println("1 - Espada \n2 - Machado\n");//opções das armas do personagem Guerreiro    
-                        int menuArma2 = scanner.nextInt();
-                        System.out.println();
-
-                        switch (menuArma2) {//Escolhe a Arma  do Guerreiro
-                            case 1: personagens[i] = new Guerreiro(new Espada()); j = false; break;
-                            case 2: personagens[i] = new Guerreiro(new Machado()); j = false; break;
-                            default: System.out.println("Opção inválida! Digite uma opção correta!");
-                            this.limpar();
-                        }
-                    }
-
-                    break;
-                        
-                    case 3:
-                        
-                    for (boolean j = true; j == true;) {
-                            
-                        System.out.println("1 - Cajado \n2 - Varinha\n");//opções das armas do personagem Mago    
-                        int menuArma3 = scanner.nextInt();//Chamando o Scanner para Guiardar 
-                        System.out.println();
-
-                        switch (menuArma3) {//Escolhe a Arma  do Mago
-                            case 1: personagens[i] = new Mago(new Cajado()); j = false; break;
-                            case 2: personagens[i] = new Mago(new Varinha()); j = false; break;
-                            default: System.out.println("Opção inválida! Digite uma opção correta!");
-                            this.limpar();
-                        }
-                    }
-
-                    break;
-                        
-                    default: System.out.println("Opção inválida! Digite uma opção correta!");
-                        
-                    }
-
-                break;
-                    
-                case 2://Caso o Usuario selecione a opção "2" Para iniciar o jogo
-
-                if (k == true) {
-                    System.out.println("Se prepare! A partida irá começar.\n");
-                    i = 4;
-                } else {
-                    System.out.println("Você não pode começar a partida sem ao menos ter criado pelo menos um personagem.\n");
-                    i--;
-                }
-
-                break;
-                    
-                case 3: //Caso o Usuario Selecione a opção "3" Para encerrar o jogo
-                this.encerrarJogo(); 
-                break;
-                    
-                default: System.out.println("Opção inválida! Digite uma opção correta!");
-                }
-
-        if (i == 2){//Caso os 3 Personagens já tenham cido criados
-            this.limpar();
-            System.out.println("Os 3 personagens foram criados. Se prepare! A partida irá iniciar.\n");
-        }
-        
-        }
-    }
-
-    public void encerrarJogo () throws InterruptedException, IOException { //Encerrar o jogo
-        this.limpar();
+    private void encerrarJogo() throws InterruptedException, IOException {
         System.out.println("O jogo foi encerrado!");
         System.exit(0);
-
     }
 
-    public void menuInicioTurno() throws InterruptedException, IOException {// iniciar o Turno
-        this.limpar();
-        System.out.println("1 - Iniciar turno. \n2 - Deseja sair do jogo?\n");                   
-        
-        int fimTurno = scanner.nextInt();
-        System.out.println();
+    int qtdPersonagem = 0;
 
-        switch (fimTurno) {//Caso o Usuario deseje sair do jogo
-            case 1: break;
-            case 2: this.encerrarJogo(); break;
-            default: System.out.println("Opção inválida! Digite uma opção correta!\n");
+    public void menuPrincipal () throws InterruptedException, IOException {
+
+        boolean valido;
+        this.limpar();
+        for (int j = 0; j < 3; j++) {
+            do {
+                System.out.printf("Atualmente voce tem %s de Personagem(ns)\n",qtdPersonagem);
+                System.out.println("O que deseja fazer?\n");
+                System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo\n");
+                int opcaoMenuPrincipal = scanner.nextInt();
+                System.out.println();
+                valido = opcaoMenuPrincipal == 1 || opcaoMenuPrincipal == 2 || opcaoMenuPrincipal == 3;
+
+                if (!valido){ 
+                    this.limpar();
+                    System.out.println("Opção inválida! Digite uma opção correta.\n");
+                } else {
+                    if (opcaoMenuPrincipal == 1) {
+                        this.limpar();
+                        qtdPersonagem++;
+                        this.menuEscolhaPersonagem();
+                        break;
+                    } else if (opcaoMenuPrincipal == 3){
+                        this.limpar();
+                        this.encerrarJogo();
+                        break;
+                    } else if (opcaoMenuPrincipal == 2) {
+                        this.limpar();
+                        if (qtdPersonagem >= 1 && qtdPersonagem <= 3) {
+                            j = 4;
+                            break;
+                        } else {
+                            this.limpar();
+                            System.out.println("Você não pode começar a partida sem ao menos ter criado pelo menos um personagem.\n");
+                            j--;
+                        }
+                    }
+                }
+            } while (!valido);
+        
+            if (j == 2) {
+                this.limpar();
+                System.out.println("Os 3 personagens foram criados. Se prepare! A partida irá iniciar.\n");
+            }
         }
+    }
+    
+    private void menuEscolhaPersonagem () throws InterruptedException, IOException {
+        
+        int opcaoMenuPersonagem;
+        boolean valido;
+        this.limpar();
+        do {
+            
+            System.out.println("Qual o tipo de personagem que deseja criar?\n");
+            System.out.println("1 - Arqueiro \n2 - Guerreiro \n3 - Mago\n");
+            opcaoMenuPersonagem = scanner.nextInt();
+            valido = opcaoMenuPersonagem == 1 || opcaoMenuPersonagem == 2 || opcaoMenuPersonagem == 3;
+
+            if (!valido){
+                this.limpar();
+                System.out.println("Opção inválida! Digite uma opção correta.\n");
+            } else {
+                this.limpar();
+                System.out.println("\nNome do personagem: ");
+                Scanner nome = new Scanner (System.in);
+                String nomePersonagem = nome.nextLine();
+                System.out.println(nomePersonagem);
+                this.menuEscolhaArma(nomePersonagem, opcaoMenuPersonagem);
+            }
+        } while (!valido);
+    }
+
+    Personagem[] personagens = new Personagem[3];
+    int i = 0;
+
+    private void menuEscolhaArma (String nomePersonagem, int opcaoMenuPersonagem) throws InterruptedException, IOException {
+        this.limpar();
+        System.out.println("\nSelecione a arma:\n");
+        boolean valido;
+
+        switch(opcaoMenuPersonagem) {
+                        
+            case 1:
+
+            do {
+                System.out.println("1 - Arco Longo \n2 - Balestra\n");                   
+                int opcaoMenuArma = scanner.nextInt();
+                System.out.println();
+                valido = opcaoMenuArma == 1 || opcaoMenuArma == 2;
+
+                if (!valido){
+                    this.limpar();
+                    System.out.println("Opção inválida! Digite uma opção correta!");
+                } else {
+                    if (opcaoMenuArma == 1){
+                        personagens[i] = new Arqueiro(nomePersonagem, new ArcoLongo());
+                        i++;
+                        break;
+                    } else {
+                        personagens[i] = new Arqueiro(nomePersonagem, new Balestra());
+                        i++;
+                        break;
+                    }
+                }
+            } while (!valido);
+            break;
+                
+            case 2:
+
+            do {
+                System.out.println("1 - Espada \n2 - Machado\n");                   
+                int opcaoMenuArma = scanner.nextInt();
+                System.out.println();
+                valido = opcaoMenuArma == 1 || opcaoMenuArma == 2;
+
+                if (!valido){
+                    this.limpar();
+                    System.out.println("Opção inválida! Digite uma opção correta!");
+                } else {
+                    if (opcaoMenuArma == 1){
+                        personagens[i] = new Guerreiro(nomePersonagem, new Espada());
+                        i++;
+                        break;
+                    } else {
+                        personagens[i] = new Guerreiro(nomePersonagem, new Machado());
+                        i++;
+                        break;
+                    }
+                }
+            } while (!valido);
+            break;
+                
+            case 3:
+                
+            do {
+                System.out.println("1 - Cajado \n2 - Varinha\n");                   
+                int opcaoMenuArma = scanner.nextInt();
+                System.out.println();
+
+                valido = opcaoMenuArma == 1 || opcaoMenuArma == 2;
+
+                if (!valido){
+                    this.limpar();
+                    System.out.println("Opção inválida! Digite uma opção correta!");
+                } else {
+                    if (opcaoMenuArma == 1){
+                    personagens[i] = new Mago(nomePersonagem, new Cajado());
+                    i++;
+                    break;
+                    } else {
+                    personagens[i] = new Mago(nomePersonagem, new Varinha());
+                    i++;
+                    break;
+                    }
+                }
+            } while (!valido);
+            break;
+
+            default:; 
+        }
+        this.limpar();
+    } 
+
+    public void menuInicioTurno() throws InterruptedException, IOException {
+        boolean valido;
+        
+        do {
+            System.out.println("1 - Iniciar turno. \n2 - Deseja sair do jogo?\n");                   
+            int opcaoMenuInicioTurno = scanner.nextInt();
+            System.out.println();
+            valido = opcaoMenuInicioTurno == 1 || opcaoMenuInicioTurno == 2;
+
+            if (!valido){
+                this.limpar();
+                System.out.println("Opção inválida! Digite uma opção correta!\n");
+            } else {
+                if (opcaoMenuInicioTurno == 1) {
+                    break;
+                } else {
+                    this.limpar();
+                    this.encerrarJogo(); break;
+                }
+            }
+        } while (!valido);
     }
 
     public void turno() throws InterruptedException, IOException {
-
+        this.limpar();
+        Dragao dragao = new Dragao();
         Random random = new Random();
-    
-        for (Personagem personagem : personagens) {
-            if (personagem != null && personagem.getVida() > 0) {
-                this.limpar();
-                System.out.printf("O personagem %s deve fazer o que?\n", personagem.getClasse());
-                System.out.println("\n1 - Atacar \n2 - Defender\n");
+        
+        int vidaTotalPersonagens = 0;
 
-                int escolhaAcao = scanner.nextInt();
-                System.out.println();
-
-                switch(escolhaAcao) {
-                    case 1:
-                        personagem.setDefendendo(false);
-                        System.out.printf("\nO personagem %s atacou o %s e causou %d de dano.\n", personagem.getClasse(), dragao.getClasse(), personagem.atacar());
-                        dragao.defenderAtaque(personagem.atacar());
-                        System.out.printf("\nO %s fez uma defesa de %d\n",dragao.getClasse(),dragao.getDefBase());
-                        System.out.printf("\nAgora o %s tem %d de vida.\n", dragao.getClasse(), dragao.getVida());
-                        break;
-                    case 2:
-                        personagem.setDefendendo(true);
-                        int acrescimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
-                        System.out.printf("\nO %s recebeu um acréscimo de %d na defesa.\n", personagem.getClasse(), acrescimoDef);
-                        break;
-                }
-            } else if (personagem != null && personagem.getVida() <= 0) {
-
-                    System.out.printf("\nO personagem %s está morto.\n", personagem.getClasse());
-
+        for (int l = 0; l < qtdPersonagem; l++) {
+            if (personagens[l] != null) {
+                vidaTotalPersonagens += personagens[l].getVida();
             }
         }
-
         
-        Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
-        dragao.atacar();
+        do {
+            for (Personagem personagem : personagens) {
+                if (personagem != null && personagem.getVida() > 0) {
 
-        this.menuFimTurno();
+                    System.out.printf("Qual ação o %s deve fazer?\n", 
+                                        personagem.getClasse());
+                    System.out.println("\n1 - Atacar \n2 - Defender\n");
+                    int escolhaAcao = scanner.nextInt();
+                    System.out.println();
 
+                    switch(escolhaAcao) {
+
+                        case 1:
+                            this.limpar();
+                            personagem.setDefendendo(false);
+                            personagem.atacar(dragao);
+                            System.out.println();
+                            dragao.defenderAtaque(personagem);
+                            System.out.println();
+                            
+                            if (dragao.getVida() <= 0) {
+                                System.out.println("Você venceu! O dragão foi derrotado!");
+                                this.encerrarJogo();
+                                break;
+                            }
+                            break;
+
+                        case 2:
+                            this.limpar();
+                            personagem.setDefendendo(true);
+                            int acrescimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
+                            System.out.printf("\nO %s %s recebeu um acréscimo de %d na defesa.\n\n", 
+                                                personagem.getClasse(),personagem.getNome() , 
+                                                acrescimoDef);
+                            break;
+                    }
+                } else if (personagem != null && personagem.getVida() <= 0) {
+                        this.limpar();
+                        System.out.printf("\nO personagem %s está morto.\n", 
+                                            personagem.getClasse());
+                }
+            }
+
+            Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
+            dragao.atacar(recebedorAtaque);
+            System.out.println();
+            recebedorAtaque.defenderAtaque(dragao);
+            this.menuFimTurno();
+
+        } while (vidaTotalPersonagens > 0);
     }
 
-    public void menuFimTurno() throws InterruptedException, IOException {
+    private void menuFimTurno() throws InterruptedException, IOException {
 
-        System.out.println("\nFim de turno!\n");
+        System.out.println();
+        System.out.println("Fim de turno!\n");
         boolean valido;
 
         do { 
-            System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?\n\n");             
+            System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?\n");             
             int opcaoMenuFimTurno = scanner.nextInt();
             System.out.println();
-
             valido = opcaoMenuFimTurno == 1 || opcaoMenuFimTurno == 2;
 
             if (!valido){
                 System.out.println("Opção inválida! Digite uma opção correta!");
             } else {
                 if (opcaoMenuFimTurno == 1) {
+                    this.limpar();
                     break;
                 } else if (opcaoMenuFimTurno == 2) {
+                    this.limpar();
                     this.encerrarJogo(); break;
                 }
             }
         } while(!valido);
-        
-    }
-
+    }   
 }
