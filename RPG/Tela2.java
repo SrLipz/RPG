@@ -204,7 +204,6 @@ public class Tela2 {
 
                     System.out.printf("\nO personagem %s está morto e não pode mais jogar.\n", 
                                         personagem.getClasse());
-
             }
         }
         

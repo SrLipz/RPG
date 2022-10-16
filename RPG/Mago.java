@@ -2,8 +2,8 @@ public class Mago extends Personagem {
 
     private ArmaMago arma;
 
-    public Mago (ArmaMago arma) {
-        super("Mago", 200, 20, 10);
+    public Mago (String nome, ArmaMago arma) {
+        super(nome, "Mago", 200, 20, 10);
         this.arma = arma;
     }
 

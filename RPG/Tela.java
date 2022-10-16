@@ -45,7 +45,6 @@ public class Tela {
 
         for (int j = 0; j < 3; j++) {
             do {
-
                 System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo\n");
                 int opcaoMenuPrincipal = scanner.nextInt();
                 System.out.println();
@@ -80,25 +79,28 @@ public class Tela {
             }
         }
     }
-
+    
     private void menuEscolhaPersonagem () {
         
         int opcaoMenuPersonagem;
         boolean valido;
 
         do {
+           
 
             System.out.println("Qual o tipo de personagem que deseja criar?\n");
             System.out.println("1 - Arqueiro \n2 - Guerreiro \n3 - Mago\n");
             opcaoMenuPersonagem = scanner.nextInt();
-            System.out.println();
-
+            
             valido = opcaoMenuPersonagem == 1 || opcaoMenuPersonagem == 2 || opcaoMenuPersonagem == 3;
 
             if (!valido){
                 System.out.println("Opção inválida! Digite uma opção correta.\n");
             } else {
-                this.menuEscolhaArma(opcaoMenuPersonagem);
+                System.out.println("Nome do personagem: ");
+                String nomePersonagem = scanner.nextLine();
+                System.out.println();
+                this.menuEscolhaArma(nomePersonagem, opcaoMenuPersonagem);
             }
             
         } while (!valido);
@@ -107,10 +109,10 @@ public class Tela {
     Personagem[] personagens = new Personagem[3];
     int i = 0;
 
-    private void menuEscolhaArma (int opcaoMenuPersonagem) {
+    private void menuEscolhaArma (String nomePersonagem, int opcaoMenuPersonagem) {
 
+        System.out.println("\nSelecione a arma:\n");
         boolean valido;
-        System.out.println("Selecione a arma:\n");
 
         switch(opcaoMenuPersonagem) {
                         
@@ -128,11 +130,11 @@ public class Tela {
                     System.out.println("Opção inválida! Digite uma opção correta!");
                 } else {
                     if (opcaoMenuArma == 1){
-                        personagens[i] = new Arqueiro(new ArcoLongo());
+                        personagens[i] = new Arqueiro(nomePersonagem, new ArcoLongo());
                         i++;
                         break;
                     } else {
-                        personagens[i] = new Arqueiro(new Balestra());
+                        personagens[i] = new Arqueiro(nomePersonagem, new Balestra());
                         i++;
                         break;
                     }
@@ -155,11 +157,11 @@ public class Tela {
                     System.out.println("Opção inválida! Digite uma opção correta!");
                 } else {
                     if (opcaoMenuArma == 1){
-                        personagens[i] = new Guerreiro(new Espada());
+                        personagens[i] = new Guerreiro(nomePersonagem, new Espada());
                         i++;
                         break;
                     } else {
-                        personagens[i] = new Guerreiro(new Machado());
+                        personagens[i] = new Guerreiro(nomePersonagem, new Machado());
                         i++;
                         break;
                     }
@@ -182,11 +184,11 @@ public class Tela {
                     System.out.println("Opção inválida! Digite uma opção correta!");
                 } else {
                     if (opcaoMenuArma == 1){
-                    personagens[i] = new Mago(new Cajado());
+                    personagens[i] = new Mago(nomePersonagem, new Cajado());
                     i++;
                     break;
                     } else {
-                    personagens[i] = new Mago(new Varinha());
+                    personagens[i] = new Mago(nomePersonagem, new Varinha());
                     i++;
                     break;
                     }
@@ -253,7 +255,7 @@ public class Tela {
                         case 1:
                             personagem.setDefendendo(false);
                             System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
-                                                personagem.getClasse(), 
+                                                personagem.getNome(), 
                                                 personagem.getArma().getNomeArma(), 
                                                 dragao.getClasse(), 
                                                 personagem.atacar());
@@ -261,7 +263,6 @@ public class Tela {
                             dragao.defenderAtaque(personagem.atacar());
                             System.out.println();
                             
-                            System.out.println();
                             if (dragao.getVida() <= 0) {
                                 System.out.println("Você venceu! O dragão foi derrotado!");
                                 this.encerrarJogo();
@@ -284,7 +285,7 @@ public class Tela {
 
             Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
             dragao.atacar();
-            
+        
             System.out.printf("%s: \nUsou sua bola de fogo para atacar o %s,\npontos de ataque: %d\n", 
                                                 dragao.getClasse(), 
                                                 recebedorAtaque.getClasse(), 

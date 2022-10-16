@@ -2,8 +2,8 @@ public class Arqueiro extends Personagem {
 
     private ArmaArqueiro arma;
 
-    public Arqueiro (ArmaArqueiro arma) {
-        super("Arqueiro", 160, 20, 30);
+    public Arqueiro (String nome, ArmaArqueiro arma) {
+        super(nome, "Arqueiro", 160, 20, 30);
         this.arma = arma;
 
     }
