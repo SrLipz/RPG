@@ -73,7 +73,7 @@ public abstract class Personagem {
         this.arma = arma;
     }
     
-    public abstract int atacar();
+    public abstract void atacar(Personagem personagens);
     
     public abstract void defenderAtaque(int ataqueDragao);
 

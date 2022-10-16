@@ -5,8 +5,13 @@ public class Dragao extends Personagem {
     }
 
     @Override
-    public int atacar () {
-        return this.getAtqBase();
+    public void atacar (Personagem personagem) {
+        int atqComArma;
+        atqComArma = this.getAtqBase();
+        System.out.printf("%s: \nUsou sua bola de fogo para atacar o %s,\npontos de ataque: %d\n", 
+        this.getClasse(), 
+        personagem.getClasse(), 
+        atqComArma);
     }
     
     @Override

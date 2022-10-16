@@ -14,7 +14,6 @@ public class Tela {
         do {
             System.out.println("1 - Iniciar uma partida \n2 - Sair do jogo\n");
             int opcaoMenuInicio = scanner.nextInt();
-            
             valido = opcaoMenuInicio == 1 || opcaoMenuInicio == 2;
 
             if (!valido) {
@@ -48,7 +47,6 @@ public class Tela {
                 System.out.println("1 - Criar novo personagem \n2 - Começar partida \n3 - Sair do jogo\n");
                 int opcaoMenuPrincipal = scanner.nextInt();
                 System.out.println();
-
                 valido = opcaoMenuPrincipal == 1 || opcaoMenuPrincipal == 2 || opcaoMenuPrincipal == 3;
 
                 if (!valido){ 
@@ -86,12 +84,9 @@ public class Tela {
         boolean valido;
 
         do {
-           
-
             System.out.println("Qual o tipo de personagem que deseja criar?\n");
             System.out.println("1 - Arqueiro \n2 - Guerreiro \n3 - Mago\n");
             opcaoMenuPersonagem = scanner.nextInt();
-            
             valido = opcaoMenuPersonagem == 1 || opcaoMenuPersonagem == 2 || opcaoMenuPersonagem == 3;
 
             if (!valido){
@@ -102,7 +97,6 @@ public class Tela {
                 System.out.println();
                 this.menuEscolhaArma(nomePersonagem, opcaoMenuPersonagem);
             }
-            
         } while (!valido);
     }
 
@@ -119,11 +113,9 @@ public class Tela {
             case 1:
 
             do {
-
                 System.out.println("1 - Arco Longo \n2 - Balestra\n");                   
                 int opcaoMenuArma = scanner.nextInt();
                 System.out.println();
-
                 valido = opcaoMenuArma == 1 || opcaoMenuArma == 2;
 
                 if (!valido){
@@ -139,18 +131,15 @@ public class Tela {
                         break;
                     }
                 }
-                
             } while (!valido);
             break;
                 
             case 2:
 
             do {
-
                 System.out.println("1 - Espada \n2 - Machado\n");                   
                 int opcaoMenuArma = scanner.nextInt();
                 System.out.println();
-
                 valido = opcaoMenuArma == 1 || opcaoMenuArma == 2;
 
                 if (!valido){
@@ -166,14 +155,12 @@ public class Tela {
                         break;
                     }
                 }
-                
             } while (!valido);
             break;
                 
             case 3:
                 
             do {
-
                 System.out.println("1 - Cajado \n2 - Varinha\n");                   
                 int opcaoMenuArma = scanner.nextInt();
                 System.out.println();
@@ -193,12 +180,10 @@ public class Tela {
                     break;
                     }
                 }
-                
             } while (!valido);
             break;
 
-            default:;
-                
+            default:; 
         }
     } 
 
@@ -208,10 +193,8 @@ public class Tela {
         
         do {
             System.out.println("1 - Iniciar turno. \n2 - Deseja sair do jogo?\n");                   
-            
             int opcaoMenuInicioTurno = scanner.nextInt();
             System.out.println();
-
             valido = opcaoMenuInicioTurno == 1 || opcaoMenuInicioTurno == 2;
 
             if (!valido){
@@ -240,11 +223,9 @@ public class Tela {
         }
         
         do {
-            
             for (Personagem personagem : personagens) {
-
                 if (personagem != null && personagem.getVida() > 0) {
-                    
+
                     System.out.printf("Qual ação o %s deve fazer?\n", 
                                         personagem.getClasse());
                     System.out.println("\n1 - Atacar \n2 - Defender\n");
@@ -252,15 +233,13 @@ public class Tela {
                     System.out.println();
 
                     switch(escolhaAcao) {
+
                         case 1:
+
                             personagem.setDefendendo(false);
-                            System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
-                                                personagem.getNome(), 
-                                                personagem.getArma().getNomeArma(), 
-                                                dragao.getClasse(), 
-                                                personagem.atacar());
+                            personagem.atacar(dragao);
                             System.out.println();
-                            dragao.defenderAtaque(personagem.atacar());
+                            dragao.defenderAtaque(personagem);
                             System.out.println();
                             
                             if (dragao.getVida() <= 0) {
@@ -269,7 +248,9 @@ public class Tela {
                                 break;
                             }
                             break;
+
                         case 2:
+
                             personagem.setDefendendo(true);
                             int acrescimoDef = personagem.getDefBase() * (10/100) + personagem.getDefBase();
                             System.out.printf("\nO %s recebeu um acréscimo de %d na defesa.\n", 
@@ -284,15 +265,9 @@ public class Tela {
             }
 
             Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
-            dragao.atacar();
-        
-            System.out.printf("%s: \nUsou sua bola de fogo para atacar o %s,\npontos de ataque: %d\n", 
-                                                dragao.getClasse(), 
-                                                recebedorAtaque.getClasse(), 
-                                                dragao.atacar());
+            dragao.atacar(recebedorAtaque);
             System.out.println();
-            recebedorAtaque.defenderAtaque(dragao.atacar());
-
+            recebedorAtaque.defenderAtaque(dragao);
             this.menuFimTurno();
 
         } while (vidaTotalPersonagens > 0);
@@ -302,14 +277,13 @@ public class Tela {
     private void menuFimTurno() {
 
         System.out.println();
-        System.out.println("\nFim de turno!\n");
+        System.out.println("Fim de turno!\n");
         boolean valido;
 
         do { 
             System.out.println("1 - Próximo turno. \n2 - Deseja sair do jogo?\n");             
             int opcaoMenuFimTurno = scanner.nextInt();
             System.out.println();
-
             valido = opcaoMenuFimTurno == 1 || opcaoMenuFimTurno == 2;
 
             if (!valido){
@@ -321,6 +295,7 @@ public class Tela {
                     this.encerrarJogo(); break;
                 }
             }
+
         } while(!valido);
     }   
 }

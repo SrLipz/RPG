@@ -17,8 +17,14 @@ public class Arqueiro extends Personagem {
     }
     
     @Override
-    public int atacar () {
-        return this.getAtqBase() + this.getArma().getAtqArma();
+    public void atacar (Personagem personagem) {
+        int atqComArma;
+        atqComArma = this.getAtqBase() + this.getArma().getAtqArma();
+        System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
+                            this.getNome(), 
+                            this.getArma().getNomeArma(),
+                            personagem.getClasse(),  
+                            atqComArma);
     }
     
     @Override
