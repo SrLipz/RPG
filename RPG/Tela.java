@@ -8,7 +8,6 @@ public class Tela {
     public void menuInicio () {
 
         System.out.println("Olá, seja bem vindo ao Heroes of OOP! \n\nVamos começar uma nova partida?\n");
-        Scanner scanner = new Scanner(System.in);
         boolean valido;
         
         do {
