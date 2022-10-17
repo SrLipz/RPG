@@ -309,6 +309,11 @@ public class Tela {
 
                         case 2: // Caso a acao do personagem seja defender, o personagem tem um acrescimo de 10% na atual rodada //
                             personagem.setDefendendo(true);
+                            System.out.printf("O %s (%s)RECEBEU UM ACRESCIMO DE 10%% NOS PONTOS DE DEFESA.\n", 
+                                                personagem.getNome(), 
+                                                personagem.getClasse());
+                            double acrescimo = (personagem.getDefBase() + personagem.getArma().getDefArma()) * 0.10;
+                            System.out.printf("ACRESCIMO NO PONTO DE DEFESA: %.01f\n\n", acrescimo);
                             break;
                     }
                 } else if (personagem != null && personagem.getVida() <= 0) { // Se o personagem estiver com a vida <=0, ele não pode realizar acao. //
@@ -328,12 +333,11 @@ public class Tela {
                 if (recebedorAtaque.getVida() > 0) {
                     System.out.printf("------------TURNO DO %s------------", dragao.getNome());
                     System.out.println("\n");
-                    double acrescimoDef = 0;
-                    if (recebedorAtaque.isDefendendo()) {
+                    double acrescimoDef = 0; // Caso o personagem escolha atacar, não terá 10% de acrescimo //
+                    if (recebedorAtaque.isDefendendo()) { // Caso o personagem escolha defender, terá 10% de acrescimo //
                         acrescimoDef = (recebedorAtaque.getDefBase() + recebedorAtaque.getArma().getDefArma()) * 0.10;
                         recebedorAtaque.setDefBase(recebedorAtaque.getDefBase()+acrescimoDef);
                     }
-                    System.out.println(recebedorAtaque.getDefBase());
                     dragao.atacar(recebedorAtaque);
                     System.out.println();
                     recebedorAtaque.defenderAtaque(dragao);
@@ -351,7 +355,7 @@ public class Tela {
                             break;
                         }
                     }
-                    recebedorAtaque.setDefBase(recebedorAtaque.getDefBase() - acrescimoDef);
+                    recebedorAtaque.setDefBase(recebedorAtaque.getDefBase() - acrescimoDef); // Retorno a vida do personagem ao normal, sem acrescimo //
                     break;
                 } else {
                     if (contador == 30) {
