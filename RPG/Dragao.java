@@ -1,26 +1,38 @@
-public class Dragao extends Classe {
+//* Personagem não jogavel, ele servirá para atacar os personagens jogaveis *//
 
-    private String classe = "Dragão";
-    private int atqBase = 30;
-    private int defBase = 30;
-    private int vida = 300;
+public class Dragao extends Personagem {
 
-    public String getClasse() {
-        return classe;
-    }
-    public int getAtqBase() {
-        return atqBase;
-    }
-    public int getDefBase() {
-        return defBase;
-    }
-    public int getVida() {
-        return vida;
+    public Dragao () {
+        super("DRAGAO", "Dragao", 300, 30, 30);
     }
 
     @Override
-    public String status(){
-        String texto = String.format("Classe: %s\nVida: %d\nAtaque Base: %d\nDefesa Base: %d\n", getClasse(),getVida(), getAtqBase(), getDefBase());
-            return texto;
+    public void atacar (Personagem personagem) {
+        double atqComArma;
+        atqComArma = this.getAtqBase();
+        System.out.printf("%s: \nUsou sua bola de fogo para atacar o %s,\npontos de ataque: %.1f\n", 
+                            this.getNome(), 
+                            personagem.getClasse(), 
+                            atqComArma);
     }
+    
+    @Override
+    public void defenderAtaque (Personagem personagem) {
+        double dano = (personagem.getAtqBase() + personagem.getArma().getAtqArma()) - this.getDefBase();
+        if (dano < 0){
+            dano = 0;
+        }
+        this.setVida(this.getVida() - dano);
+
+        System.out.printf("%s: \nDefendeu o ataque com suas escamas,\npontos de defesa: %.1f\n", 
+                                this.getNome(), 
+                                this.getDefBase());
+        System.out.println();  
+        System.out.printf("DANO FINAL: %.1f", 
+                                dano);
+        System.out.printf("\nSTATUS DE VIDA DO %s: %.1f\n", 
+                                this.getNome(), 
+                                this.getVida());        
+    }
+
 }

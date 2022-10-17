@@ -1,19 +1,22 @@
 //* Personagem jogavel, ele servirá para atacar os personagens não jogaveis *//
 
-public class Mago extends Personagem {
+public class Guerreiro extends Personagem {
 
-    private ArmaMago arma;
+    private ArmaGuerreiro arma;
 
-    public Mago (String nome, ArmaMago arma) {
-        super(nome, "Mago", 200, 20, 10);
+
+    public Guerreiro (String nome, ArmaGuerreiro arma) {
+        
+        super(nome, "Guerreiro", 180, 30, 20);
         this.arma = arma;
+        
     }
 
-    public ArmaMago getArma() {
+    public ArmaGuerreiro getArma() {
         return arma;
     }
 
-    public void setArma(ArmaMago arma) {
+    public void setArma(ArmaGuerreiro arma) {
         this.arma = arma;
     }
 
@@ -45,9 +48,9 @@ public class Mago extends Personagem {
                             defComArma);
         System.out.printf("\nDANO FINAL: %.1f\n", dano);
         System.out.printf("STATUS DE VIDA DO %s (%s): %.1f\n", 
-                                this.getNome(),
-                                this.getClasse(),
-                                this.getVida());
+                            this.getNome(), 
+                            this.getClasse(), 
+                            this.getVida());
     }
 
 }

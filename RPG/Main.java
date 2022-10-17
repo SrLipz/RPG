@@ -1,19 +1,16 @@
+import java.io.IOException;
 
+//* A partir dessa classe, Sera iniciado o jogo *//
 
 public class Main {
-    public static void main(String[] args) {
-
-        //Menu menu = new Menu();
-        //System.out.println(menu.menuInicial());
-        //System.out.println(menu.entrada());
+    public static void main(String[] args) throws InterruptedException, IOException {
         
-        Classe personagem1 = new GuerreiroEspada();
-        Classe personagem2 = new GuerreiroMachado();
-        Classe dragao = new Dragao();
+    Tela tela = new Tela();
 
-        System.out.println(personagem1.status());
-        System.out.println(personagem2.status());
-        System.out.println(dragao.status());
-        
+    tela.menuInicio();
+    tela.menuPrincipal();
+    tela.menuInicioTurno();
+    tela.turno();
+    
     }
 }
