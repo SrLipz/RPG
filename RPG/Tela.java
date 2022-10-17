@@ -267,17 +267,32 @@ public class Tela {
             }
         }
 
+        
+
+        
+
         do {
             for (Personagem personagem : personagens) { 
                 if (personagem != null && personagem.getVida() > 0) {
                     this.mostrarStatus(personagem);
-                    System.out.printf("ESCOLHA A ACAO:");
-                    System.out.println();
-                    System.out.println("\n[1] Atacar \n[2] Defender\n");
-                    System.out.print("OPCAO: ");
-                    int escolhaAcao = scanner.nextInt();
-                    System.out.println();
+
+                    boolean valido;
+                    int escolhaAcao;
                     
+                    do {
+                        System.out.printf("ESCOLHA A ACAO:");
+                        System.out.println();
+                        System.out.println("\n[1] Atacar \n[2] Defender\n");
+                        System.out.print("OPCAO: ");
+                        int acao = scanner.nextInt();
+                        System.out.println();
+                        valido = acao == 1 || acao == 2;
+                        escolhaAcao = acao;
+                        if (!valido){
+                            System.out.println("OPCAO INVALIDA! DIGITE UMA OPCAO CORRETA.\n");
+                        }
+                    } while (!valido);
+
                     switch (escolhaAcao) {
                         case 1:
                             personagem.atacar(dragao);
@@ -307,12 +322,12 @@ public class Tela {
                 }
             }
 
-            boolean valido;
+            boolean valido2;
             int contador = 0;
 
             do {
                 Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
-                valido = recebedorAtaque.getVida() > 0;
+                valido2 = recebedorAtaque.getVida() > 0;
                 contador++;
                 if (recebedorAtaque.getVida() > 0) {
                     System.out.printf("------------TURNO DO %s------------", dragao.getNome());
@@ -340,7 +355,7 @@ public class Tela {
                         break;
                     }
                 }
-            } while (!valido);
+            } while (!valido2);
 
             this.menuFimTurno();
 
