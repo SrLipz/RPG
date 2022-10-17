@@ -4,9 +4,7 @@ import java.io.IOException;
 
 public class Tela {
 
-    public void limpar() throws InterruptedException, IOException {
-
-        // Limpa a tela no windows, no linux e no MacOS
+    public void limpar() throws InterruptedException, IOException { // Metodo para Limpa o console quando chamado
         if (System.getProperty("os.name").contains("Windows"))
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         else
@@ -15,14 +13,14 @@ public class Tela {
     }
 
     Scanner scanner = new Scanner(System.in);
-
+    //Menu inicio exibir inicio, sair e opção invalida
     public void menuInicio() throws InterruptedException, IOException {
         this.limpar();
-        System.out.println("SEJA BEM-VINDO AO HEROS OF OOP!\n");
+        System.out.println("SEJA BEM-VINDO AO HEROS OF OOP!\n"); 
         boolean valido;
 
         do {
-            System.out.println("MENU INICIAL:\n");
+            System.out.println("MENU INICIAL:\n"); 
             System.out.println("[1] Iniciar uma partida \n[2] Sair do jogo\n");
             System.out.print("OPCAO: ");
             int opcaoMenuInicio = scanner.nextInt();
@@ -43,13 +41,13 @@ public class Tela {
         } while (!valido);
     }
 
-    private void encerrarJogo() {
+    private void encerrarJogo() { // Metodo para encerrar o jogo
         System.out.println("O JOGO FOI ENCERRADO!");
         System.exit(0);
     }
 
     int qtdPersonagem = 0;
-
+    // Menu principal exibir criar o personagem, começar a partida, sair do jogo e opoção invalida
     public void menuPrincipal() throws InterruptedException, IOException {
         this.limpar();
         boolean valido;
@@ -80,6 +78,7 @@ public class Tela {
                     } else if (opcaoMenuPrincipal == 2) {
                         if (qtdPersonagem >= 1 && qtdPersonagem <= 3) {
                             j = 4;
+                            this.limpar();
                             break;
                         } else {
                             this.limpar();
@@ -93,11 +92,12 @@ public class Tela {
 
             if (j == 2) {
                 this.limpar();
-                System.out.println("A QUANTIDADE MAXIMA DE PERSONAGEM FOI CRIADA. \nA PARTIDA IRA INICIAR.\n");
+                System.out.println("A QUANTIDADE MAXIMA DE PERSONAGEM FOI CRIADA. \n\nA PARTIDA IRA INICIAR.\n");
+                // Aviso Que a Quantidade maxima de usuarios já foi criada
             }
         }
     }
-
+    // Menu para a criação do Personagem
     private void menuEscolhaPersonagem() throws InterruptedException, IOException {
 
         int opcaoMenuPersonagem;
@@ -116,6 +116,7 @@ public class Tela {
             if (!valido) {
                 System.out.println("OPCAO INVALIDA! DIGITE UMA OPCAO CORRETA.\n");
             } else {
+                //Escolha do nome do Personagem
                 System.out.print("\nDIGITE O NOME PARA O PERSONAGEM: ");
                 Scanner nome = new Scanner(System.in);
                 String nomePersonagem = nome.nextLine();
@@ -127,6 +128,7 @@ public class Tela {
     Personagem[] personagens = new Personagem[3];
     int i = 0;
 
+    // Menu para Selecionar a Arma
     private void menuEscolhaArma(String nomePersonagem, int opcaoMenuPersonagem)
             throws InterruptedException, IOException {
         System.out.println("\nSELECIONE A ARMA:\n");
@@ -134,7 +136,7 @@ public class Tela {
 
         switch (opcaoMenuPersonagem) {
 
-            case 1:
+            case 1:// Armas do Arqueiro
 
                 do {
                     System.out.println("[1] ARCO LONGO (Ataque +12 / Defesa +13)");
@@ -162,7 +164,7 @@ public class Tela {
                 } while (!valido);
                 break;
 
-            case 2:
+            case 2:// Armas do Guerreiro
 
                 do {
                     System.out.println("[1] ESPADA (Ataque +10 / Defesa +15)");
@@ -189,7 +191,7 @@ public class Tela {
                 } while (!valido);
                 break;
 
-            case 3:
+            case 3:// Armas do Mago
 
                 do {
                     System.out.println("[1] CAJADO (Ataque +13 / Defesa +12)");
@@ -223,10 +225,10 @@ public class Tela {
         }
     }
 
+    //Menu para iniciar o turno: exibir Iniciar turno, Encerrar o jogo ou Opção invalida
     public void menuInicioTurno() throws InterruptedException, IOException {
 
         boolean valido;
-        this.limpar();
         do {
             System.out.println("MENU DE TURNO\n");
             System.out.println("[1] Iniciar turno \n[2] Encerrar o jogo\n");
@@ -251,7 +253,7 @@ public class Tela {
     }
 
     int vidaTotalPersonagens;
-
+    //
     public void turno() throws InterruptedException, IOException {
 
         Dragao dragao = new Dragao();
@@ -266,7 +268,7 @@ public class Tela {
         }
 
         do {
-            for (Personagem personagem : personagens) {
+            for (Personagem personagem : personagens) { 
                 if (personagem != null && personagem.getVida() > 0) {
                     this.mostrarStatus(personagem);
                     System.out.printf("ESCOLHA A ACAO:");
@@ -346,7 +348,7 @@ public class Tela {
 
     }
 
-    private void menuFimTurno() throws InterruptedException, IOException {
+    private void menuFimTurno() throws InterruptedException, IOException {// Fim do Turno Passado, Inicio do novo turno ou encerramento do jogo
 
         System.out.println();
         System.out.println("FIM DE TURNO!\n");
@@ -375,7 +377,7 @@ public class Tela {
         } while (!valido);
     }
 
-    public void mostrarStatus (Personagem personagem){
+    public void mostrarStatus (Personagem personagem){// Status do Personagem no Turno Vigente
         
         System.out.println("================================\n");
         System.out.println("STATUS DO PERSONAGEM DESSE TURNO\n");
