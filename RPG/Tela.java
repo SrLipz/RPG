@@ -13,6 +13,7 @@ public class Tela {
     }
 
     Scanner scanner = new Scanner(System.in);
+    
     //Menu inicio exibir inicio, sair e opção invalida
     public void menuInicio() throws InterruptedException, IOException {
         this.limpar();
@@ -41,12 +42,14 @@ public class Tela {
         } while (!valido);
     }
 
-    private void encerrarJogo() { // Metodo para encerrar o jogo
+    // Método para ser chamado e encerrar o jogo
+    private void encerrarJogo() { 
         System.out.println("O JOGO FOI ENCERRADO!");
         System.exit(0);
     }
 
-    int qtdPersonagem = 0;
+    int qtdPersonagem = 0; // Contador quantidade de personagens criados. MAX = 3 PERSONAGENS
+
     // Menu principal exibir criar o personagem, começar a partida, sair do jogo e opoção invalida
     public void menuPrincipal() throws InterruptedException, IOException {
         this.limpar();
@@ -90,13 +93,13 @@ public class Tela {
                 }
             } while (!valido);
 
-            if (j == 2) {
+            if (j == 2) { // Informa a quantidade de personagens foi criada
                 this.limpar();
                 System.out.println("A QUANTIDADE MAXIMA DE PERSONAGEM FOI CRIADA. \n\nA PARTIDA IRA INICIAR.\n");
-                // Aviso Que a Quantidade maxima de usuarios já foi criada
             }
         }
     }
+    
     // Menu para a criação do Personagem
     private void menuEscolhaPersonagem() throws InterruptedException, IOException {
 
@@ -125,8 +128,8 @@ public class Tela {
         } while (!valido);
     }
 
-    Personagem[] personagens = new Personagem[3];
-    int i = 0;
+    Personagem[] personagens = new Personagem[3]; // array de personagem
+    int i = 0; // index para o array
 
     // Menu para Selecionar a Arma
     private void menuEscolhaArma(String nomePersonagem, int opcaoMenuPersonagem)
@@ -153,11 +156,11 @@ public class Tela {
                         this.limpar();
                         if (opcaoMenuArma == 1) {
                             personagens[i] = new Arqueiro(nomePersonagem, new ArcoLongo());
-                            i++;
+                            i++; // index: Soma para guardar o próximo personagem
                             break;
                         } else {
                             personagens[i] = new Arqueiro(nomePersonagem, new Balestra());
-                            i++;
+                            i++; // index: Soma para guardar o próximo personagem
                             break;
                         }
                     }
@@ -180,11 +183,11 @@ public class Tela {
                         this.limpar();
                         if (opcaoMenuArma == 1) {
                             personagens[i] = new Guerreiro(nomePersonagem, new Espada());
-                            i++;
+                            i++; // index: Soma para guardar o próximo personagem
                             break;
                         } else {
                             personagens[i] = new Guerreiro(nomePersonagem, new Machado());
-                            i++;
+                            i++; // index: Soma para guardar o próximo personagem
                             break;
                         }
                     }
@@ -208,20 +211,17 @@ public class Tela {
                         this.limpar();
                         if (opcaoMenuArma == 1) {
                             personagens[i] = new Mago(nomePersonagem, new Cajado());
-                            i++;
+                            i++; // index: Soma para guardar o próximo personagem
                             break;
                         } else {
                             personagens[i] = new Mago(nomePersonagem, new Varinha());
-                            i++;
+                            i++; // index: Soma para guardar o próximo personagem
                             break;
                         }
                     }
 
                 } while (!valido);
                 break;
-
-            default:
-                ;
         }
     }
 
@@ -229,6 +229,7 @@ public class Tela {
     public void menuInicioTurno() throws InterruptedException, IOException {
 
         boolean valido;
+
         do {
             System.out.println("MENU DE TURNO\n");
             System.out.println("[1] Iniciar turno \n[2] Encerrar o jogo\n");
@@ -252,32 +253,28 @@ public class Tela {
         } while (!valido);
     }
 
-    int vidaTotalPersonagens;
+    int vidaTotalPersonagens; // Soma a vida total de todos os personagens que foram criados
+
     //
     public void turno() throws InterruptedException, IOException {
 
         Dragao dragao = new Dragao();
         Random random = new Random();
 
-        vidaTotalPersonagens = 0;
+        vidaTotalPersonagens = 0; // Inicia a vida total com 0
 
-        for (int l = 0; l < qtdPersonagem; l++) {
+        for (int l = 0; l < qtdPersonagem; l++) { // Soma a vida total dos personagens criados
             if (personagens[l] != null) {
                 vidaTotalPersonagens += personagens[l].getVida();
             }
         }
-
-        
-
-        
-
         do {
-            for (Personagem personagem : personagens) { 
+            for (Personagem personagem : personagens) { // Acao que cada personagem irá realizar
                 if (personagem != null && personagem.getVida() > 0) {
-                    this.mostrarStatus(personagem);
-
+                    
+                    this.mostrarStatus(personagem); // Mostra o status do personagem que irá realizar uma acao
                     boolean valido;
-                    int escolhaAcao;
+                    int escolhaAcao; // escolha da acao atacar ou defender
                     
                     do {
                         System.out.printf("ESCOLHA A ACAO:");
@@ -300,22 +297,22 @@ public class Tela {
                             dragao.defenderAtaque(personagem);
                             System.out.println();
 
-                            if (dragao.getVida() <= 0) {
+                            if (dragao.getVida() <= 0) { // Caso o dragao fique com a vida <= 0, o jogador vence
                                 System.out.println("VOCE VENCEU! O DRAGAO FOI DERROTADO!");
                                 this.encerrarJogo();
                                 break;
                             }
                             break;
 
-                        case 2:
-                            double acrescimoDef = personagem.getDefBase() * (10 / 100) + personagem.getDefBase() + personagem.getArma().getDefArma();
+                        case 2: // Caso a acao do personagem seja defender, o personagem tem um acrescimo de 10% na atual rodada
+                            int acrescimoDef = personagem.getDefBase() * (10 / 100) + personagem.getDefBase() + personagem.getArma().getDefArma(); 
                             System.out.printf("\nO %s (%s) RECEBEU UM ACRESCIMO DE 10% NOS PONTOS DE DEFESA.\n",
                                                         personagem.getNome(),
                                                         personagem.getClasse());
-                            System.out.printf("PONTO TOTAL DE DEFESA NESSE TURNO: %f\n", acrescimoDef);
+                            System.out.printf("PONTO TOTAL DE DEFESA NESSE TURNO: %d\n", acrescimoDef);
                             break;
                     }
-                } else if (personagem != null && personagem.getVida() <= 0) {
+                } else if (personagem != null && personagem.getVida() <= 0) { // Se o personagem estiver com a vida <=0, ele não pode realizar acao.
                     System.out.printf("\nO %s (%s) ESTA MORTO.\n",
                                         personagem.getNome(),
                                         personagem.getClasse());
@@ -323,7 +320,7 @@ public class Tela {
             }
 
             boolean valido2;
-            int contador = 0;
+            int contador = 0; // limite de sorteio que será realizado
 
             do {
                 Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
@@ -339,10 +336,10 @@ public class Tela {
                     if (dano < 0) {
                         dano = 0;
                     }
-                    vidaTotalPersonagens -= dano;
+                    vidaTotalPersonagens -= dano; // Dano sofrido pelos personagens, diminui a vida total
                     if (recebedorAtaque.getVida() <= 0) {
                         System.out.printf("%s (%s) MORREU!\n", recebedorAtaque.getNome(), recebedorAtaque.getClasse());
-                        if (vidaTotalPersonagens <= 0) {
+                        if (vidaTotalPersonagens <= 0) { // Dragao vence se todos personagens estiverem com a vida <=0
                             System.out.printf("O %s VENCEU! VOCE NAO TEM NENHUM PERSONAGEM PARA COMBATER!\n",
                                     dragao.getNome());
                             this.encerrarJogo();
@@ -360,10 +357,10 @@ public class Tela {
             this.menuFimTurno();
 
         } while (vidaTotalPersonagens > 0);
-
     }
 
-    private void menuFimTurno() throws InterruptedException, IOException {// Fim do Turno Passado, Inicio do novo turno ou encerramento do jogo
+    // Fim do Turno Passado, Inicio do novo turno ou encerramento do jogo
+    private void menuFimTurno() throws InterruptedException, IOException {
 
         System.out.println();
         System.out.println("FIM DE TURNO!\n");
@@ -392,7 +389,8 @@ public class Tela {
         } while (!valido);
     }
 
-    public void mostrarStatus (Personagem personagem){// Status do Personagem no Turno Vigente
+    // Status do Personagem no Turno Vigente
+    public void mostrarStatus (Personagem personagem){
         
         System.out.println("================================\n");
         System.out.println("STATUS DO PERSONAGEM DESSE TURNO\n");
@@ -405,5 +403,4 @@ public class Tela {
         System.out.println();
 
     }
-
 }
