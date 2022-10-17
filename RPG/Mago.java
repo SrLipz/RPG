@@ -1,3 +1,5 @@
+//* Personagem jogavel, ele servirá para atacar os personagens não jogaveis *//
+
 public class Mago extends Personagem {
 
     private ArmaMago arma;
@@ -17,9 +19,9 @@ public class Mago extends Personagem {
 
     @Override
     public void atacar (Personagem personagem) {
-        int atqComArma;
+        double atqComArma;
         atqComArma = this.getAtqBase() + this.getArma().getAtqArma();
-        System.out.printf("%s (%s): \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
+        System.out.printf("%s (%s): \nUsou %s para atacar o %s,\npontos de ataque: %.1f\n", 
                             this.getNome(),
                             this.getClasse(), 
                             this.getArma().getNomeArma(),
@@ -29,22 +31,23 @@ public class Mago extends Personagem {
     
     @Override
     public void defenderAtaque (Personagem personagem) {
-        int defComArma;
+        double defComArma;
         defComArma = this.getDefBase() + this.getArma().getDefArma();
-        int dano = personagem.getAtqBase() - defComArma;
+        double dano = personagem.getAtqBase() - defComArma;
         if (dano <= 0) {
             dano = 0;
         }
         this.setVida(this.getVida() - dano);
-        System.out.printf("%s (%s): \nDefendeu o ataque com %s,\npontos de defesa: %d\n", 
+        System.out.printf("%s (%s): \nDefendeu o ataque com %s,\npontos de defesa: %.1f\n", 
                             this.getNome(),
                             this.getClasse(),
                             this.getArma().getNomeArma(), 
                             defComArma);
-        System.out.printf("\nDANO FINAL: %d\n", dano);
-        System.out.printf("STATUS DE VIDA DO %s (%s): %d\n", 
+        System.out.printf("\nDANO FINAL: %.1f\n", dano);
+        System.out.printf("STATUS DE VIDA DO %s (%s): %.1f\n", 
                                 this.getNome(),
                                 this.getClasse(),
                                 this.getVida());
     }
+
 }

@@ -1,10 +1,12 @@
+//* A partir dessa classe, serão criados armamentos que serão usados pelos personagens para combate durante o jogo *//
+
 public class Arma {
     
     private String nomeArma;
-    private int atqArma;
-    private int defArma;
+    private double atqArma;
+    private double defArma;
 
-    public Arma (String nomeArma, int atqArma, int defArma){
+    public Arma (String nomeArma, double atqArma, double defArma){
         
         this.nomeArma = nomeArma;
         this.atqArma = atqArma;
@@ -16,11 +18,11 @@ public class Arma {
         return nomeArma;
     }
 
-    public int getAtqArma() {
+    public double getAtqArma() {
         return atqArma;
     }
 
-    public int getDefArma() {
+    public double getDefArma() {
         return defArma;
     }
 

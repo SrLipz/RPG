@@ -1,14 +1,16 @@
+//* A partir dessa classe, serão criados personagens que serão utilizados pelo jogador para combate durante o jogo *//
+
 public abstract class Personagem {
     
     private boolean defendendo;
     private String nome;
     private String classe;
-    private int vida;
-    private int atqBase;
-    private int defBase;
+    private double vida;
+    private double atqBase;
+    private double defBase;
     private Arma arma;
 
-    public Personagem(String nome, String classe, int vida, int atqBase, int defBase) {
+    public Personagem(String nome, String classe, double vida, double atqBase, double defBase) {
         this.nome = nome;
         this.classe = classe;
         this.vida = vida;
@@ -41,27 +43,27 @@ public abstract class Personagem {
         this.classe = classe;
     }
 
-    public int getVida() {
+    public double getVida() {
         return vida;
     }
 
-    public void setVida(int vida) {
+    public void setVida(double vida) {
         this.vida = vida;
     }
 
-    public int getAtqBase() {
+    public double getAtqBase() {
         return atqBase;
     }
 
-    public void setAtqBase(int atqBase) {
+    public void setAtqBase(double atqBase) {
         this.atqBase = atqBase;
     }
 
-    public int getDefBase() {
+    public double getDefBase() {
         return defBase;
     }
 
-    public void setDefBase(int defBase) {
+    public void setDefBase(double defBase) {
         this.defBase = defBase;
     }
 

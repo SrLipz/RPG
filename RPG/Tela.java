@@ -1,10 +1,12 @@
+//* Classe onde será chamada para apresentar os menus que o jogo possui e metodo turno, onde acontecerá todo o jogo *//
+
 import java.util.Scanner;
 import java.util.Random;
 import java.io.IOException;
 
 public class Tela {
 
-    public void limpar() throws InterruptedException, IOException { // Metodo para Limpa o console quando chamado
+    public void limpar() throws InterruptedException, IOException { // Metodo para Limpa o console quando chamado //
         if (System.getProperty("os.name").contains("Windows"))
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         else
@@ -13,8 +15,8 @@ public class Tela {
     }
 
     Scanner scanner = new Scanner(System.in);
-    
-    //Menu inicio exibir inicio, sair e opção invalida
+
+    //Menu inicio exibir inicio, sair e opção invalida //
     public void menuInicio() throws InterruptedException, IOException {
         this.limpar();
         System.out.println("SEJA BEM-VINDO AO HEROS OF OOP!\n"); 
@@ -42,15 +44,15 @@ public class Tela {
         } while (!valido);
     }
 
-    // Método para ser chamado e encerrar o jogo
+    // Método para ser chamado e encerrar o jogo //
     private void encerrarJogo() { 
         System.out.println("O JOGO FOI ENCERRADO!");
         System.exit(0);
     }
 
-    int qtdPersonagem = 0; // Contador quantidade de personagens criados. MAX = 3 PERSONAGENS
+    int qtdPersonagem = 0; // Contador quantidade de personagens criados. MAX = 3 PERSONAGENS //
 
-    // Menu principal exibir criar o personagem, começar a partida, sair do jogo e opoção invalida
+    // Menu principal exibir criar o personagem, começar a partida, sair do jogo e opoção invalida //
     public void menuPrincipal() throws InterruptedException, IOException {
         this.limpar();
         boolean valido;
@@ -93,14 +95,14 @@ public class Tela {
                 }
             } while (!valido);
 
-            if (j == 2) { // Informa a quantidade de personagens foi criada
+            if (j == 2) { // Informa a quantidade de personagens foi criada //
                 this.limpar();
                 System.out.println("A QUANTIDADE MAXIMA DE PERSONAGEM FOI CRIADA. \n\nA PARTIDA IRA INICIAR.\n");
             }
         }
     }
     
-    // Menu para a criação do Personagem
+    // Menu para a criação do Personagem //
     private void menuEscolhaPersonagem() throws InterruptedException, IOException {
 
         int opcaoMenuPersonagem;
@@ -119,7 +121,7 @@ public class Tela {
             if (!valido) {
                 System.out.println("OPCAO INVALIDA! DIGITE UMA OPCAO CORRETA.\n");
             } else {
-                //Escolha do nome do Personagem
+                //Escolha do nome do Personagem //
                 System.out.print("\nDIGITE O NOME PARA O PERSONAGEM: ");
                 Scanner nome = new Scanner(System.in);
                 String nomePersonagem = nome.nextLine();
@@ -128,10 +130,10 @@ public class Tela {
         } while (!valido);
     }
 
-    Personagem[] personagens = new Personagem[3]; // array de personagem
-    int i = 0; // index para o array
+    Personagem[] personagens = new Personagem[3]; // array de personagem //
+    int i = 0; // index para o array //
 
-    // Menu para Selecionar a Arma
+    // Menu para Selecionar a Arma //
     private void menuEscolhaArma(String nomePersonagem, int opcaoMenuPersonagem)
             throws InterruptedException, IOException {
         System.out.println("\nSELECIONE A ARMA:\n");
@@ -139,7 +141,7 @@ public class Tela {
 
         switch (opcaoMenuPersonagem) {
 
-            case 1:// Armas do Arqueiro
+            case 1:// Armas do Arqueiro //
 
                 do {
                     System.out.println("[1] ARCO LONGO (Ataque +12 / Defesa +13)");
@@ -156,18 +158,18 @@ public class Tela {
                         this.limpar();
                         if (opcaoMenuArma == 1) {
                             personagens[i] = new Arqueiro(nomePersonagem, new ArcoLongo());
-                            i++; // index: Soma para guardar o próximo personagem
+                            i++; // index: Soma para guardar o próximo personagem //
                             break;
                         } else {
                             personagens[i] = new Arqueiro(nomePersonagem, new Balestra());
-                            i++; // index: Soma para guardar o próximo personagem
+                            i++; // index: Soma para guardar o próximo personagem //
                             break;
                         }
                     }
                 } while (!valido);
                 break;
 
-            case 2:// Armas do Guerreiro
+            case 2:// Armas do Guerreiro //
 
                 do {
                     System.out.println("[1] ESPADA (Ataque +10 / Defesa +15)");
@@ -183,18 +185,18 @@ public class Tela {
                         this.limpar();
                         if (opcaoMenuArma == 1) {
                             personagens[i] = new Guerreiro(nomePersonagem, new Espada());
-                            i++; // index: Soma para guardar o próximo personagem
+                            i++; // index: Soma para guardar o próximo personagem //
                             break;
                         } else {
                             personagens[i] = new Guerreiro(nomePersonagem, new Machado());
-                            i++; // index: Soma para guardar o próximo personagem
+                            i++; // index: Soma para guardar o próximo personagem //
                             break;
                         }
                     }
                 } while (!valido);
                 break;
 
-            case 3:// Armas do Mago
+            case 3:// Armas do Mago //
 
                 do {
                     System.out.println("[1] CAJADO (Ataque +13 / Defesa +12)");
@@ -211,11 +213,11 @@ public class Tela {
                         this.limpar();
                         if (opcaoMenuArma == 1) {
                             personagens[i] = new Mago(nomePersonagem, new Cajado());
-                            i++; // index: Soma para guardar o próximo personagem
+                            i++; // index: Soma para guardar o próximo personagem //
                             break;
                         } else {
                             personagens[i] = new Mago(nomePersonagem, new Varinha());
-                            i++; // index: Soma para guardar o próximo personagem
+                            i++; // index: Soma para guardar o próximo personagem //
                             break;
                         }
                     }
@@ -225,7 +227,7 @@ public class Tela {
         }
     }
 
-    //Menu para iniciar o turno: exibir Iniciar turno, Encerrar o jogo ou Opção invalida
+    //Menu para iniciar o turno: exibir Iniciar turno, Encerrar o jogo ou Opção invalida //
     public void menuInicioTurno() throws InterruptedException, IOException {
 
         boolean valido;
@@ -253,7 +255,7 @@ public class Tela {
         } while (!valido);
     }
 
-    int vidaTotalPersonagens; // Soma a vida total de todos os personagens que foram criados
+    int vidaTotalPersonagens; // Soma a vida total de todos os personagens que foram criados //
 
     //
     public void turno() throws InterruptedException, IOException {
@@ -261,20 +263,21 @@ public class Tela {
         Dragao dragao = new Dragao();
         Random random = new Random();
 
-        vidaTotalPersonagens = 0; // Inicia a vida total com 0
+        vidaTotalPersonagens = 0; // Inicia a vida total com 0 //
 
-        for (int l = 0; l < qtdPersonagem; l++) { // Soma a vida total dos personagens criados
+        for (int l = 0; l < qtdPersonagem; l++) { // Soma a vida total dos personagens criados //
             if (personagens[l] != null) {
                 vidaTotalPersonagens += personagens[l].getVida();
             }
         }
         do {
-            for (Personagem personagem : personagens) { // Acao que cada personagem irá realizar
+            for (Personagem personagem : personagens) { // Acao que cada personagem irá realizar //
                 if (personagem != null && personagem.getVida() > 0) {
                     
-                    this.mostrarStatus(personagem); // Mostra o status do personagem que irá realizar uma acao
+                    personagem.setDefendendo(false);
+                    this.mostrarStatus(personagem); // Mostra o status do personagem que irá realizar uma acao //
                     boolean valido;
-                    int escolhaAcao; // escolha da acao atacar ou defender
+                    int escolhaAcao; // escolha da acao atacar ou defender //
                     
                     do {
                         System.out.printf("ESCOLHA A ACAO:");
@@ -297,22 +300,18 @@ public class Tela {
                             dragao.defenderAtaque(personagem);
                             System.out.println();
 
-                            if (dragao.getVida() <= 0) { // Caso o dragao fique com a vida <= 0, o jogador vence
+                            if (dragao.getVida() <= 0) { // Caso o dragao fique com a vida <= 0, o jogador vence //
                                 System.out.println("VOCE VENCEU! O DRAGAO FOI DERROTADO!");
                                 this.encerrarJogo();
                                 break;
                             }
                             break;
 
-                        case 2: // Caso a acao do personagem seja defender, o personagem tem um acrescimo de 10% na atual rodada
-                            int acrescimoDef = personagem.getDefBase() * (10 / 100) + personagem.getDefBase() + personagem.getArma().getDefArma(); 
-                            System.out.printf("\nO %s (%s) RECEBEU UM ACRESCIMO DE 10% NOS PONTOS DE DEFESA.\n",
-                                                        personagem.getNome(),
-                                                        personagem.getClasse());
-                            System.out.printf("PONTO TOTAL DE DEFESA NESSE TURNO: %d\n", acrescimoDef);
+                        case 2: // Caso a acao do personagem seja defender, o personagem tem um acrescimo de 10% na atual rodada //
+                            personagem.setDefendendo(true);
                             break;
                     }
-                } else if (personagem != null && personagem.getVida() <= 0) { // Se o personagem estiver com a vida <=0, ele não pode realizar acao.
+                } else if (personagem != null && personagem.getVida() <= 0) { // Se o personagem estiver com a vida <=0, ele não pode realizar acao. //
                     System.out.printf("\nO %s (%s) ESTA MORTO.\n",
                                         personagem.getNome(),
                                         personagem.getClasse());
@@ -320,7 +319,7 @@ public class Tela {
             }
 
             boolean valido2;
-            int contador = 0; // limite de sorteio que será realizado
+            int contador = 0; // limite de sorteio que será realizado //
 
             do {
                 Personagem recebedorAtaque = personagens[random.nextInt(qtdPersonagem)];
@@ -329,23 +328,30 @@ public class Tela {
                 if (recebedorAtaque.getVida() > 0) {
                     System.out.printf("------------TURNO DO %s------------", dragao.getNome());
                     System.out.println("\n");
+                    double acrescimoDef = 0;
+                    if (recebedorAtaque.isDefendendo()) {
+                        acrescimoDef = (recebedorAtaque.getDefBase() + recebedorAtaque.getArma().getDefArma()) * 0.10;
+                        recebedorAtaque.setDefBase(recebedorAtaque.getDefBase()+acrescimoDef);
+                    }
+                    System.out.println(recebedorAtaque.getDefBase());
                     dragao.atacar(recebedorAtaque);
                     System.out.println();
                     recebedorAtaque.defenderAtaque(dragao);
-                    int dano = dragao.getAtqBase() - (recebedorAtaque.getDefBase() + recebedorAtaque.getArma().getDefArma());
+                    double dano = dragao.getAtqBase() - (recebedorAtaque.getDefBase() + recebedorAtaque.getArma().getDefArma());
                     if (dano < 0) {
                         dano = 0;
                     }
-                    vidaTotalPersonagens -= dano; // Dano sofrido pelos personagens, diminui a vida total
+                    vidaTotalPersonagens -= dano; // Dano sofrido pelos personagens, diminui a vida total //
                     if (recebedorAtaque.getVida() <= 0) {
                         System.out.printf("%s (%s) MORREU!\n", recebedorAtaque.getNome(), recebedorAtaque.getClasse());
-                        if (vidaTotalPersonagens <= 0) { // Dragao vence se todos personagens estiverem com a vida <=0
+                        if (vidaTotalPersonagens <= 0) { // Dragao vence se todos personagens estiverem com a vida <=0 //
                             System.out.printf("O %s VENCEU! VOCE NAO TEM NENHUM PERSONAGEM PARA COMBATER!\n",
                                     dragao.getNome());
                             this.encerrarJogo();
                             break;
                         }
                     }
+                    recebedorAtaque.setDefBase(recebedorAtaque.getDefBase() - acrescimoDef);
                     break;
                 } else {
                     if (contador == 30) {
@@ -359,7 +365,7 @@ public class Tela {
         } while (vidaTotalPersonagens > 0);
     }
 
-    // Fim do Turno Passado, Inicio do novo turno ou encerramento do jogo
+    // Fim do Turno Passado, Inicio do novo turno ou encerramento do jogo //
     private void menuFimTurno() throws InterruptedException, IOException {
 
         System.out.println();
@@ -389,7 +395,7 @@ public class Tela {
         } while (!valido);
     }
 
-    // Status do Personagem no Turno Vigente
+    // Status do Personagem no Turno Vigente //
     public void mostrarStatus (Personagem personagem){
         
         System.out.println("================================\n");
@@ -397,9 +403,9 @@ public class Tela {
         System.out.printf("- Nome: %s\n", personagem.getNome());
         System.out.printf("- Classe: %s\n", personagem.getClasse());
         System.out.printf("- Arma: %s\n", personagem.getArma().getNomeArma());
-        System.out.printf("- Pontos de Vida: %d\n", personagem.getVida());
-        System.out.printf("- Pontos de Ataque: %d (+%d)\n", personagem.getAtqBase(), personagem.getArma().getAtqArma());
-        System.out.printf("- Pontos de Defesa: %d (+%d)\n", personagem.getDefBase(), personagem.getArma().getDefArma());
+        System.out.printf("- Pontos de Vida: %.1f\n", personagem.getVida());
+        System.out.printf("- Pontos de Ataque: %.1f (+%.1f)\n", personagem.getAtqBase(), personagem.getArma().getAtqArma());
+        System.out.printf("- Pontos de Defesa: %.1f (+%.1f)\n", personagem.getDefBase(), personagem.getArma().getDefArma());
         System.out.println();
 
     }

@@ -1,3 +1,5 @@
+//* Arma que só pode ser usada pela Classe Guerreiro *//
+
 public class Machado extends ArmaGuerreiro {
     
     public Machado() {
