@@ -20,8 +20,9 @@ public class Arqueiro extends Personagem {
     public void atacar (Personagem personagem) {
         int atqComArma;
         atqComArma = this.getAtqBase() + this.getArma().getAtqArma();
-        System.out.printf("%s: \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
-                            this.getNome(), 
+        System.out.printf("%s (%s): \nUsou %s para atacar o %s,\npontos de ataque: %d\n", 
+                            this.getNome(),
+                            this.getClasse(), 
                             this.getArma().getNomeArma(),
                             personagem.getNome(),  
                             atqComArma);
@@ -36,12 +37,13 @@ public class Arqueiro extends Personagem {
             dano = 0;
         }
         this.setVida(getVida() - dano);
-        System.out.printf("%s: \nDefendeu o ataque com %s,\npontos de defesa: %d\n", 
+        System.out.printf("%s (%s): \nDefendeu o ataque com %s,\npontos de defesa: %d\n", 
+                            this.getNome(),
                             this.getClasse(), 
                             this.getArma().getNomeArma(),
                             defComArma);
-        System.out.printf("\nDano final: %d\n", dano);
-        System.out.printf("Status de vida do %s: %d.\n", this.getClasse(), this.getVida());
+        System.out.printf("\nDANO FINAL: %d\n", dano);
+        System.out.printf("STATUS DE VIDA DO %s (%s): %d\n", this.getNome(), this.getClasse(), this.getVida());
     }
 
 }

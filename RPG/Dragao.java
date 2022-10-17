@@ -1,7 +1,7 @@
 public class Dragao extends Personagem {
 
     public Dragao () {
-        super("Dragão", "Dragao", 300, 30, 30);
+        super("DRAGAO", "Dragao", 300, 30, 30);
     }
 
     @Override
@@ -9,9 +9,9 @@ public class Dragao extends Personagem {
         int atqComArma;
         atqComArma = this.getAtqBase();
         System.out.printf("%s: \nUsou sua bola de fogo para atacar o %s,\npontos de ataque: %d\n", 
-        this.getClasse(), 
-        personagem.getClasse(), 
-        atqComArma);
+                            this.getNome(), 
+                            personagem.getClasse(), 
+                            atqComArma);
     }
     
     @Override
@@ -23,13 +23,13 @@ public class Dragao extends Personagem {
         this.setVida(this.getVida() - dano);
 
         System.out.printf("%s: \nDefendeu o ataque com suas escamas,\npontos de defesa: %d\n", 
-                                this.getClasse(), 
+                                this.getNome(), 
                                 this.getDefBase());
         System.out.println();  
-        System.out.printf("Dano final: %d", 
+        System.out.printf("DANO FINAL: %d", 
                                 dano);
-        System.out.printf("\nStatus de vida do %s: %d.\n", 
-                                this.getClasse(), 
+        System.out.printf("\nSTATUS DE VIDA DO %s: %d\n", 
+                                this.getNome(), 
                                 this.getVida());        
     }
 }
